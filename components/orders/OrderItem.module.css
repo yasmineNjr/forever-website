@@ -1,0 +1,116 @@
+.item {
+    /* margin: 0.1rem 1rem; */
+    width: 95%;
+    height: auto;
+    display:inline;
+    margin-bottom: 0.3rem;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: left;
+    padding: 0.5rem;
+  }
+
+  .order {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: left;
+    margin: 0;
+  }
+
+  .content {
+    text-align: left;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+  .title {
+    text-align: left;
+    padding: 0.25rem;
+    width: 35%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .product {
+    text-align: left;
+    width: 100%;
+    display: flex;
+  }
+
+  .date {
+    text-align: right;
+    padding: 0.25rem;
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .status {
+    text-align: center;
+    padding: 0.2rem;
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .title h3 {
+    font-size: 1rem;
+    color: #5D5D5D;
+  }
+  
+  .date h3 {
+    font-size: 1rem;
+    color: #989898;
+  } 
+
+  .content h3 {
+    font-size: 1rem;
+    color: #5D5D5D;
+  }
+
+  .status h3 {
+    font-size: 1rem;
+    color: #DEB920;
+  }
+
+  .content h2 {
+    font-size: 1.2rem;
+    color: #657415;
+  }
+
+  @media screen and (max-width : 430px) {
+    .title h3 {
+      font-size: 0.7rem;
+      color: #5D5D5D;
+    }
+    
+    .date h3 {
+      font-size: 0.7rem;
+      color: #989898;
+    } 
+  
+    .content h3 {
+      font-size: 0.7rem;
+      color: #5D5D5D;
+    }
+  
+    .status h3 {
+      font-size: 0.7rem;
+      color: #DEB920;
+    }
+  
+    .content h2 {
+      font-size: 0.8rem;
+      color: #657415;
+    }
+  }

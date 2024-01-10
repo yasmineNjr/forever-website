@@ -1,0 +1,24 @@
+.container {
+  /* background-color: #989898; */
+  margin: 0;
+}
+.main {
+    /* margin: 3rem auto; */
+    width: 100%;
+    /* height: auto; */
+    /* max-height: 75rem; */
+    /* min-height: 25rem; */
+    margin-left: 0rem;
+    margin-right: 0rem;
+    /* background-color: blueviolet; */
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+  }
+.hr {
+  /* box-shadow: 0 2px 8px #989898; */
+  /* border-top: 0.25px solid #989898; */
+  height: '0.5px';
+  background-color: #989898;
+}
+

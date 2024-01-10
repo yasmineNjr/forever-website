@@ -1,0 +1,53 @@
+.header {
+    width: 100%;
+    height: 22rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 2% 2.5%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo {
+    width: 25%;
+    color: white;
+  }
+
+  .logo p {
+    font-size: 0.85rem;
+    color: #989898;
+  }
+  
+  .ul {
+    list-style: none;
+    margin-top: 2rem;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .li {
+    margin-left: 1rem;
+  }
+
+  .logo h1 {
+    font-size: 1rem;
+    color: #657415;
+  }
+  
+  @media screen and (max-width : 430px) {
+    .header {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 2% 2.5%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .logo {
+      width: 100%;
+      color: white;
+    }
+  }

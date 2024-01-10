@@ -1,0 +1,8 @@
+//language context
+https://www.techomoro.com/how-to-use-context-api-in-a-next-js-app/
+
+//user context
+https://codedamn.com/news/nextjs/context-api-for-next-js
+
+//React Multi Language App - i18next Tutorial
+https://www.youtube.com/watch?v=w04LXKlusCQ

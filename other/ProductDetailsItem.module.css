@@ -1,0 +1,41 @@
+.item {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-direction: row;
+    height: 5rem;
+  }
+  
+  .image {
+    width: 20%;
+    height: 4.5rem;
+    overflow: hidden;
+    background-color: red;
+  }
+  
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: 1px solid #989898;
+  }
+  
+  .content {
+    width: 75%;
+    height: 4.5rem;
+    margin-left: 0.5rem;
+    background-color: purple;
+  }
+  
+  .content h3 {
+    font-size: 1rem;
+    color: #989898;
+    background-color: blue;
+  }
+
+  .content h4 {
+    font-size: 1rem;
+    color: #5D5D5D;
+    background-color: green;
+  }
+
+  

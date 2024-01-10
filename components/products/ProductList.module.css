@@ -1,0 +1,22 @@
+.list {
+    list-style: none;
+    /* margin-left: 2rem;
+    margin-right: 2rem; */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    /* padding-top: 1rem; */
+    flex-direction: row;
+    display: flex;
+    /* background-color: red; */
+    width: 100%;    
+    flex-wrap: wrap; 
+    /* height: 20rem; */
+  }
+
+  .noItems {
+    color: #989898;
+    display: flex;
+    justify-content: center;
+    margin: 5rem;
+    width: 100%;
+  }
