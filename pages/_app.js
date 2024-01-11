@@ -1,11 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from '@/components/layout/Layout';
 import '../styles/globals.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppContext from "@/AppContext";
 import languageObjectEn from '../translate/en';
 
 function MyApp({ Component, pageProps }) {
+
+  
+  function getCurrentDimension(){
+    if (typeof window !== 'undefined')
+    return {
+        width: window.innerWidth,
+        height: window.innerHeight
+    }
+  }
 
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
@@ -19,8 +28,21 @@ function MyApp({ Component, pageProps }) {
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [activePath, setActivePath] = useState('/');
   const [currentUser, setCurrentUser] = useState('u1');
+  const [screenSize, setScreenSize] = useState(1113);
+
   //console.log(pageProps.departments); 
 
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension().width);
+    }
+    window.addEventListener('resize', updateDimension);
+    
+    return(() => {
+        window.removeEventListener('resize', updateDimension);
+    })
+  }, [screenSize]);
+  
   return (
     <AppContext.Provider
       value={{
@@ -37,6 +59,7 @@ function MyApp({ Component, pageProps }) {
           // currentIndex  : currentIndex,
           activePath    : activePath,
           currentUser   : currentUser,
+          screenSize    : screenSize
         },
         setCartItemsCount: setCartItemsCount,
         setOrdersCount   : setOrdersCount,
@@ -50,6 +73,7 @@ function MyApp({ Component, pageProps }) {
         // setCurrentIndex  : setCurrentIndex,
         setActivePath    : setActivePath,
         setCurrentUser   : setCurrentUser,
+        setScreenSize    : setScreenSize
       }}
     >
         <Layout products={pageProps.products} departments={pageProps.departments}>

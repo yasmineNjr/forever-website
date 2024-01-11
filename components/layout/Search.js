@@ -31,8 +31,8 @@ import { MdSpaceDashboard } from "react-icons/md";
 function Search() {
 
     const value = useContext(AppContext);
-    let { translateObj, cartItemsCount, ordersCount, language, activePath, currentUser } = value.state;
-    // console.log(activePath);
+    let { translateObj, cartItemsCount, ordersCount, language, activePath, currentUser, screenSize } = value.state;
+    
     let borderRight ;
     let borderLeft ;
     let borderTopLeftRadius;
@@ -49,29 +49,8 @@ function Search() {
         borderBottomRightRadius = '4px';
     }
     
-    
-    // let { theme } = value.state;
-    // const th = theme.toString();
-    // const { searchWord } = value.state;
     const [selectedOption, setSelectedOption] = useState('');
-    // const [selected, setSelected] = useState("SA");
-    // const selectedHandler = (code) => {
-    //     let cur ;
-    //     if(code === 'SA'){
-    //         cur = {'code': 'SA', 'curEn': 'SR', 'curAr': 'ر.س'} ;
-    //     }else if(code === 'QA'){
-    //         cur = {'code': 'QA', 'curEn': 'QR', 'curAr': 'ر.ق'};
-    //     }else if(code === 'BH'){
-    //         cur = {'code': 'BH', 'curEn': 'BD', 'curAr': 'د.ب'};
-    //     }else if(code === 'AE'){
-    //         cur = {'code': 'AE', 'curEn': 'AED', 'curAr': 'د.إ'};
-    //     }else if(code === 'KW'){
-    //         cur = {'code': 'KW', 'curEn': 'KD', 'curAr': 'د.ك'};
-    //     }else if(code === 'OM'){
-    //         cur = {'code': 'OM', 'curEn': 'OR', 'curAr': 'ر.ع'};
-    //     }
-    //     value.setCurrency(cur);
-    // }
+   
     // const searchInputRef = useRef();
     // const cart = DUMMY_CART.find(c => c.userId === SETTINGS.currentUser);
     // const orders = DUMMY_ORDER;
@@ -135,28 +114,28 @@ function Search() {
                     {currentUser === 'MANAGER' && 
                     <li>
                         <div title={translateObj.dashboard} type="button" className={classes.iconbutton}>
-                            <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size='1.3rem'  onClick={dashboardHandler}/>
+                            <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.3rem' : '1.1rem'}  onClick={dashboardHandler}/>
                         </div>
                     </li>
                     }
                     <li>
                         <div title={translateObj.home} type="button" className={classes.iconbutton}>
-                            <FaHome color= {activePath==='/' ? '#657415' : '#989898'} size='1.35rem'  onClick={homeHandler}/>
+                            <FaHome color= {activePath==='/' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.35rem' : '1.15rem'}  onClick={homeHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.products} type="button" className={classes.iconbutton}>
-                            <GoPackage  color= {activePath==='/products' ? '#657415' : '#989898'} size='1.35rem' onClick={productsHandler}/>
+                            <GoPackage  color= {activePath==='/products' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.35rem' : '1.15rem'} onClick={productsHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.groups} type="button" className={classes.iconbutton}>
-                            <TbPackages  color= {activePath==='/groups' ? '#657415' : '#989898'} size='1.35rem' onClick={groupsHandler}/>
+                            <TbPackages  color= {activePath==='/groups' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.35rem' : '1.15rem'} onClick={groupsHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.cart} type="button" className={classes.iconbutton}>
-                            <BsCart4 color= {activePath==='/cart' ? '#657415' : '#989898'} size='1.2rem' onClick={cartHandler}/>
+                            <BsCart4 color= {activePath==='/cart' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.2rem' : '1rem'} onClick={cartHandler}/>
                             {
                                 //cart.products.length > 0 && 
                                     // <span className={classes.iconbutton__badge}>{cart.products.length}</span>
@@ -167,7 +146,7 @@ function Search() {
                     </li>
                     <li>
                         <div title={translateObj.orders} type="button" className={classes.iconbuttondeliver}>
-                            <IoReceiptOutline color={activePath==='/orders' ? '#657415' : '#989898'} size='1.2rem' onClick={orderHandler}/>
+                            <IoReceiptOutline color={activePath==='/orders' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.2rem' : '1rem'} onClick={orderHandler}/>
                             {/* <TbTruckDelivery color='#657415' size='1.5rem' onClick={orderHandler}/> */}
                             {
                                 ordersCount > 0 &&
@@ -177,25 +156,14 @@ function Search() {
                     </li>
                     <li>
                         <div title={translateObj.about} type="button" className={classes.iconbutton}>
-                            <AiOutlineExclamationCircle color= {activePath==='/about' ? '#657415' : '#989898'} size='1.3rem' onClick={aboutHandler}/>
+                            <AiOutlineExclamationCircle color= {activePath==='/about' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.3rem' : '1.1rem'} onClick={aboutHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.login} type="button" className={classes.iconbutton}>
-                            <AiOutlineUser color={activePath==='/user' ? '#657415' : '#989898'} size='1.2rem' onClick={cartHandler}/>   
+                            <AiOutlineUser color={activePath==='/user' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.2rem' : '1rem'} onClick={cartHandler}/>   
                         </div>
                     </li>
-                    {/* <li>
-                        <ReactFlagsSelect
-                            countries={["SA", "QA", "BH", "AE", "OM", "KW"]}
-                            selected={selected}
-                            onSelect={(code) => {setSelected(code); selectedHandler(code);}}
-                            selectedSize={14}
-                            showSelectedLabel={false}
-                            showOptionLabel={false}
-                            className={classes.flags}
-                        />
-                   </li> */}
                 </ul>
             </nav>
         </header>

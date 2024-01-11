@@ -12,7 +12,7 @@ import ReactFlagsSelect from "react-flags-select";
 function ProductDetails(props) {
     
     const value = useContext(AppContext);
-    let { translateObj, language, currency } = value.state;
+    let { translateObj, language, currency, screenSize } = value.state;
     
     let title, department, description; 
     if(language === 'en'){
@@ -63,7 +63,6 @@ function ProductDetails(props) {
         
     }
     //////////refresh cart icon////////////
-    
     let sum = 0;
     const [qty, setQty] = useState(1);
     function plusHandler(){
@@ -203,7 +202,7 @@ function ProductDetails(props) {
                             showSelectedLabel={false}
                             showOptionLabel={false}
                             />
-                        <div style={{marginRight: '10px', marginLeft: '10px', display: 'flex', justifyContent: 'center'}}>
+                        <div style={{marginRight: '10px', marginLeft: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                             <h1>{price} {language === 'en'
                                 ? 
                                 selectedCurrency ? selectedCurrency.curEn : 'RS'
@@ -214,7 +213,7 @@ function ProductDetails(props) {
                         </div>
                     </div>
                     <Rating
-                        size={25}
+                        size={screenSize > 430 ? '25' : '22'}
                         fillColor='#DEB920'
                         iconsCount={5}
                         initialValue={rating}

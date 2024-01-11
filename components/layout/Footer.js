@@ -51,7 +51,7 @@ import AppContext from "@/AppContext";
 function Footer(props) {
     //console.log(props);
     const value = useContext(AppContext);
-    let { translateObj , language } = value.state;
+    let { translateObj , language, screenSize } = value.state;
     let paddingRight;
     let paddingLeft;
     language === 'en' ? paddingRight = '1.5rem' : paddingLeft = '1.5rem' ;
@@ -85,23 +85,23 @@ function Footer(props) {
                 <img src='/images/Forever-Living-Products-logo.jpg' alt='logo' />
                 <div>
                     <ul className={classes.ul}>
-                        <li className={classes.li}>
-                            <FaFacebook color='#657415' size='1.25rem'/>
+                        <li className={classes.li} style={language === 'en' ? {marginLeft: '0rem' } : {marginLeft: '0.5rem' } }>
+                            <FaFacebook color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaInstagram color='#657415' size='1.25rem'/>
+                            <FaInstagram color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaPinterest color='#657415' size='1.25rem'/>
+                            <FaPinterest color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaTelegram color='#657415' size='1.25rem'/>
+                            <FaTelegram color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaWhatsapp color='#657415' size='1.25rem'/>
+                            <FaWhatsapp color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FiMail color='#657415' size='1.25rem'/>
+                            <FiMail color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
                         </li>
                     </ul>
                 </div>

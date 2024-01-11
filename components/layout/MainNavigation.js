@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import classes from './MainNavigation.module.css';
 import { FaFacebook, FaInstagram, FaPinterest, FaTelegram, FaWhatsapp } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
@@ -7,10 +8,10 @@ import AppContext from "@/AppContext";
 import { GiEagleEmblem } from "react-icons/gi";
 
 function MainNavigation() {
-
+  
   const value = useContext(AppContext);
-  let { language, translateObj } = value.state;
-
+  let { language, translateObj, screenSize } = value.state;
+  
   return (
     <header className={classes.header}>
       
@@ -22,31 +23,31 @@ function MainNavigation() {
         <ul>
           <li>
             {/* <a href='https://www.facebook.com/FOREVER/' target='_blank' rel='noreferrer'> */}
-              <FaFacebook color='white' size='1.2rem'/>
+              <FaFacebook color='white' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://www.instagram.com/foreverglobalhq/' target='_blank' rel='noreferrer'> */}
-              <FaInstagram color='white' size='1.2rem'/>
+              <FaInstagram color='white' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://www.pinterest.com/ForeverGlobalHQ/' target='_blank' rel='noreferrer'> */}
-              <FaPinterest color='white' size='1.2rem'/>
+              <FaPinterest color='white' size={screenSize > 430 ? '1.2rem' : '1rem'} />
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://telegram.me/s/FeelbetterForever?before=59' target='_blank' rel='noreferrer'> */}
-              <FaTelegram color='white' size='1.2rem'/>
+              <FaTelegram color='white' size={screenSize > 430 ? '1.2rem' : '1rem'} />
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://telegram.me/s/FeelbetterForever?before=59' target='_blank' rel='noreferrer'> */}
-              <FaWhatsapp color='white' size='1.2rem'/>
+              <FaWhatsapp color='white' size={screenSize > 430 ? '1.2rem' : '1rem'} />
             {/* </a> */}
           </li>
           <li>
-            <FiMail color='white' size='1.2rem'/>
+            <FiMail color='white' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
           </li>
         </ul>
       </nav>

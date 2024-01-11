@@ -50,4 +50,15 @@
       width: 100%;
       color: white;
     }
+    .logo p {
+      font-size: 0.75rem;
+      color: #989898;
+    }
+    .logo h1 {
+      font-size: 0.85rem;
+      color: #657415;
+    }
+    .li {
+      margin-left: 0.5rem;
+    }
   }

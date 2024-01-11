@@ -30,4 +30,20 @@
     font-size: 1rem;
     color: #5D5D5D;
   }
+
+  @media screen and (max-width : 430px) {
+    .item {
+      margin: 1rem 2rem;
+      /* background-color: blue; */
+      width: 15rem;
+      height:18rem;
+      display:flex;
+      align-items: center;
+      justify-items: center;
+    }
+    .content h3 {
+      font-size: 0.85rem;
+      color: #5D5D5D;
+    }
+  }
   

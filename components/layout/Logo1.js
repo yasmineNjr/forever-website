@@ -12,7 +12,7 @@ import { Sa, Qa, Kw, Bh, Om, Ae } from "react-flags-select";
 function Logo1(props) {
 
     const value = useContext(AppContext);
-    let { language, translateObj } = value.state;
+    let { language, translateObj, screenSize } = value.state;
     
     const [selectedOption, setSelectedOption] = useState('');
     const [selected, setSelected] = useState("SA");
@@ -56,15 +56,15 @@ function Logo1(props) {
                 <select className={classes.input}
                         value={selectedOption}
                         onChange={e => {setSelectedOption(e.target.value); value.setDepartment(e.target.value);}}>
-                        <option key='All' value={translateObj.all}>{translateObj.all}</option>
+                        <option key='All' value={translateObj.all} style={screenSize > 430 ? { fontSize: '0.85rem'} : { fontSize: '0.5rem' }}>{translateObj.all}</option>
                             {props.departments
                                 &&
                                 props.departments.map(dep => (
                                     language === 'en' 
                                     ?
-                                    <option key={dep.titleId} value={dep.titleEn}>{dep.titleEn}</option>
+                                    <option key={dep.titleId} value={dep.titleEn} style={screenSize > 430 ? { fontSize: '0.85rem'} : { fontSize: '0.5rem' }}>{dep.titleEn}</option>
                                     :
-                                    <option key={dep.titleId} value={dep.titleAr}>{dep.titleAr}</option>
+                                    <option key={dep.titleId} value={dep.titleAr} style={screenSize > 430 ? { fontSize: '0.85rem'} : { fontSize: '0.5rem' }}>{dep.titleAr}</option>
                                 ))
                             }
                 </select>
@@ -72,15 +72,15 @@ function Logo1(props) {
             <nav>
                 <ul>
                     <li>
-                        <div>{curText}</div>
+                        <div style={screenSize > 430 ? { fontSize: '1rem'} : { fontSize: '0.85rem' }}>{curText}</div>
                     </li>
                     <li>
                         {flag}
                     </li>
                    <li>
-                        <NavDropdown title={<MdLanguage color='#657415' size='1.2rem' />}
+                        <NavDropdown title={<MdLanguage color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'} />}
                                      id="dropdown-menu-align-end">
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="1"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="1"
                                             onClick={() => {setSelected('SA'); selectedHandler('SA');}}>
                                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                     <Sa /> 
@@ -88,7 +88,7 @@ function Logo1(props) {
                                 </div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="2"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="2"
                                             onClick={() => {setSelected('QA'); selectedHandler('QA');}}>
                                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                     <Qa /> 
@@ -96,7 +96,7 @@ function Logo1(props) {
                                 </div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="2"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="2"
                                             onClick={() => {setSelected('BH'); selectedHandler('BH');}}>
                                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                     <Bh /> 
@@ -104,7 +104,7 @@ function Logo1(props) {
                                 </div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="2"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="2"
                                             onClick={() => {setSelected('AE'); selectedHandler('AE');}}>
                                  <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                     <Ae /> 
@@ -112,7 +112,7 @@ function Logo1(props) {
                                  </div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="2"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="2"
                                             onClick={() => {setSelected('OM'); selectedHandler('OM');}}>
                                 <div style={{display: 'flex', flexDirection: 'OM', alignItems: 'center'}}>
                                     <Om /> 
@@ -120,7 +120,7 @@ function Logo1(props) {
                                 </div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="2"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="2"
                                             onClick={() => {setSelected('KW'); selectedHandler('KW');}}>
                                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                     <Kw /> 
@@ -131,15 +131,15 @@ function Logo1(props) {
                     </li>
                     <li>
                         <NavDropdown
-                            title={<IoLanguage color='#657415' size='1.2rem' />}
+                            title={<IoLanguage color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'} />}
                             id="dropdown-menu-align-end"
                             >
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="1"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="1"
                                             onClick={() => {document.body.dir = 'ltr'; value.setLanguage('en'); value.setTranslateObj(languageObjectEn);}}>
                                 English
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item style={{ fontSize: '14px'}} eventKey="2"
+                            <NavDropdown.Item style={screenSize > 430 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="2"
                                             onClick={() => {document.body.dir = 'rtl'; value.setLanguage('ar'); value.setTranslateObj(languageObjectAr);}}>
                                 العربية
                             </NavDropdown.Item>
