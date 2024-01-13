@@ -213,7 +213,7 @@ function ProductDetails(props) {
                         </div>
                     </div>
                     <Rating
-                        size={screenSize > 430 ? '25' : '22'}
+                        size={screenSize > 500 ? '25' : '22'}
                         fillColor='#DEB920'
                         iconsCount={5}
                         initialValue={rating}

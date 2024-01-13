@@ -44,7 +44,7 @@
   background-color: #989898;
 }
 
-@media screen and (max-width : 430px) {
+@media screen and (max-width : 500px) {
   .buttons {
     display: flex;
     flex-direction: row;

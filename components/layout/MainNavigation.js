@@ -23,31 +23,31 @@ function MainNavigation() {
         <ul>
           <li>
             {/* <a href='https://www.facebook.com/FOREVER/' target='_blank' rel='noreferrer'> */}
-              <FaFacebook color='white' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+              <FaFacebook color='white' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://www.instagram.com/foreverglobalhq/' target='_blank' rel='noreferrer'> */}
-              <FaInstagram color='white' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+              <FaInstagram color='white' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://www.pinterest.com/ForeverGlobalHQ/' target='_blank' rel='noreferrer'> */}
-              <FaPinterest color='white' size={screenSize > 430 ? '1.2rem' : '1rem'} />
+              <FaPinterest color='white' size={screenSize > 500 ? '1.2rem' : '1rem'} />
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://telegram.me/s/FeelbetterForever?before=59' target='_blank' rel='noreferrer'> */}
-              <FaTelegram color='white' size={screenSize > 430 ? '1.2rem' : '1rem'} />
+              <FaTelegram color='white' size={screenSize > 500 ? '1.2rem' : '1rem'} />
             {/* </a> */}
           </li>
           <li>
             {/* <a href='https://telegram.me/s/FeelbetterForever?before=59' target='_blank' rel='noreferrer'> */}
-              <FaWhatsapp color='white' size={screenSize > 430 ? '1.2rem' : '1rem'} />
+              <FaWhatsapp color='white' size={screenSize > 500 ? '1.2rem' : '1rem'} />
             {/* </a> */}
           </li>
           <li>
-            <FiMail color='white' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+            <FiMail color='white' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
           </li>
         </ul>
       </nav>

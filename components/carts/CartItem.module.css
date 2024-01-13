@@ -47,7 +47,7 @@
     color: #5D5D5D;
   }
 
-  @media screen and (max-width : 430px) {
+  @media screen and (max-width : 500px) {
     .title h3 {
       font-size: 0.85rem;
       color: #5D5D5D;

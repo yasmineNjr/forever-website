@@ -130,7 +130,7 @@
 .description {
     margin-top: 1rem;
 }
-@media screen and (max-width : 430px) {
+@media screen and (max-width : 500px) {
     .details {
         display: flex;
         flex-direction: row;

@@ -86,22 +86,22 @@ function Footer(props) {
                 <div>
                     <ul className={classes.ul}>
                         <li className={classes.li} style={language === 'en' ? {marginLeft: '0rem' } : {marginLeft: '0.5rem' } }>
-                            <FaFacebook color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+                            <FaFacebook color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaInstagram color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+                            <FaInstagram color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaPinterest color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+                            <FaPinterest color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaTelegram color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+                            <FaTelegram color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FaWhatsapp color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+                            <FaWhatsapp color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
                         </li>
                         <li className={classes.li}>
-                            <FiMail color='#657415' size={screenSize > 430 ? '1.2rem' : '1rem'}/>
+                            <FiMail color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'}/>
                         </li>
                     </ul>
                 </div>

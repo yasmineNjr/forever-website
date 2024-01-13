@@ -35,7 +35,7 @@
     color: #657415;
   }
   
-  @media screen and (max-width : 430px) {
+  @media screen and (max-width : 500px) {
     .header {
       width: 100%;
       height: auto;

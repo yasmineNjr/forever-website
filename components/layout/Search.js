@@ -1,4 +1,4 @@
-import { useRef , useState } from "react";
+import { useRef , useState, useEffect } from "react";
 import { useRouter } from 'next/router';
 import classes from './Search.module.css';
 import { FaSearch } from "react-icons/fa";
@@ -32,6 +32,12 @@ function Search() {
 
     const value = useContext(AppContext);
     let { translateObj, cartItemsCount, ordersCount, language, activePath, currentUser, screenSize } = value.state;
+    let cartCnt = cartItemsCount;
+    if(cartItemsCount > 9)
+    cartCnt = '9+';
+    let orderCnt = ordersCount;
+    if(ordersCount > 9)
+    orderCnt = '9+';
     
     let borderRight ;
     let borderLeft ;
@@ -50,7 +56,44 @@ function Search() {
     }
     
     const [selectedOption, setSelectedOption] = useState('');
-   
+    const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
+    const [btnIsHighlightedOrder, setBtnIsHighlightedOrder] = useState(false);
+
+    //for animation
+    const btnClasses = `${classes.iconbutton__badge} ${btnIsHighlighted ? classes.bump : ''}`;
+    const btnClassesOrder = `${classes.iconbutton__badge} ${btnIsHighlightedOrder ? classes.bump : ''}`;
+    useEffect(() => {
+       
+        if(cartItemsCount === 0){
+            return;
+        }
+        setBtnIsHighlighted(true);
+        const timer = setTimeout(() => {
+            setBtnIsHighlighted(false);
+        }, 300);//this is the time of animation in css class
+
+        return () => {
+            clearTimeout(timer);
+        };
+
+    } , [cartItemsCount]);
+    
+    useEffect(() => {
+       
+        if(ordersCount === 0){
+            return;
+        }
+        setBtnIsHighlightedOrder(true);
+        const timer = setTimeout(() => {
+            setBtnIsHighlightedOrder(false);
+        }, 300);//this is the time of animation in css class
+
+        return () => {
+            clearTimeout(timer);
+        };
+
+    } , [ordersCount]);
+
     // const searchInputRef = useRef();
     // const cart = DUMMY_CART.find(c => c.userId === SETTINGS.currentUser);
     // const orders = DUMMY_ORDER;
@@ -114,54 +157,54 @@ function Search() {
                     {currentUser === 'MANAGER' && 
                     <li>
                         <div title={translateObj.dashboard} type="button" className={classes.iconbutton}>
-                            <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.3rem' : '1.1rem'}  onClick={dashboardHandler}/>
+                            <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'}  onClick={dashboardHandler}/>
                         </div>
                     </li>
                     }
                     <li>
                         <div title={translateObj.home} type="button" className={classes.iconbutton}>
-                            <FaHome color= {activePath==='/' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.35rem' : '1.15rem'}  onClick={homeHandler}/>
+                            <FaHome color= {activePath==='/' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'}  onClick={homeHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.products} type="button" className={classes.iconbutton}>
-                            <GoPackage  color= {activePath==='/products' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.35rem' : '1.15rem'} onClick={productsHandler}/>
+                            <GoPackage  color= {activePath==='/products' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'} onClick={productsHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.groups} type="button" className={classes.iconbutton}>
-                            <TbPackages  color= {activePath==='/groups' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.35rem' : '1.15rem'} onClick={groupsHandler}/>
+                            <TbPackages  color= {activePath==='/groups' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'} onClick={groupsHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.cart} type="button" className={classes.iconbutton}>
-                            <BsCart4 color= {activePath==='/cart' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.2rem' : '1rem'} onClick={cartHandler}/>
+                            <BsCart4 color= {activePath==='/cart' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={cartHandler}/>
                             {
                                 //cart.products.length > 0 && 
                                     // <span className={classes.iconbutton__badge}>{cart.products.length}</span>
                                     cartItemsCount > 0 && 
-                                    <span className={classes.iconbutton__badge}>{cartItemsCount}</span>
+                                    <span className={btnClasses}>{cartCnt}</span>
                             }
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.orders} type="button" className={classes.iconbuttondeliver}>
-                            <IoReceiptOutline color={activePath==='/orders' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.2rem' : '1rem'} onClick={orderHandler}/>
+                            <IoReceiptOutline color={activePath==='/orders' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={orderHandler}/>
                             {/* <TbTruckDelivery color='#657415' size='1.5rem' onClick={orderHandler}/> */}
                             {
                                 ordersCount > 0 &&
-                                    <span className={classes.iconbutton__badge}>{ordersCount}</span>
+                                    <span className={btnClassesOrder}>{orderCnt}</span>
                             }
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.about} type="button" className={classes.iconbutton}>
-                            <AiOutlineExclamationCircle color= {activePath==='/about' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.3rem' : '1.1rem'} onClick={aboutHandler}/>
+                            <AiOutlineExclamationCircle color= {activePath==='/about' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'} onClick={aboutHandler}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.login} type="button" className={classes.iconbutton}>
-                            <AiOutlineUser color={activePath==='/user' ? '#657415' : '#989898'} size={screenSize > 430 ? '1.2rem' : '1rem'} onClick={cartHandler}/>   
+                            <AiOutlineUser color={activePath==='/user' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={cartHandler}/>   
                         </div>
                     </li>
                 </ul>

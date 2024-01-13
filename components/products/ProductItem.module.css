@@ -31,7 +31,7 @@
     color: #5D5D5D;
   }
 
-  @media screen and (max-width : 430px) {
+  @media screen and (max-width : 500px) {
     .item {
       margin: 1rem 2rem;
       /* background-color: blue; */
