@@ -39,6 +39,14 @@ function CartList(props) {
         setTotal(sum);
     },[quantity])
     
+    if(!products){
+        return (
+            <div className={classes.noItems}>
+                <p>Loading...</p>
+            </div>
+        )
+        
+    }
     return(
         products.length === 0 ? 
             <div className={classes.noItems}>

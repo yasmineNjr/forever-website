@@ -28,7 +28,7 @@ function Logo1(props) {
         }else if(code === 'QA'){
             cur = {'code': 'QA', 'curEn': 'QR', 'curAr': 'ر.ق'};
             curTxt = translateObj.qatarCur;
-            setFlag(<Qa/>);
+            setFlag(<Qa selectedSize={14}/>);
         }else if(code === 'BH'){
             cur = {'code': 'BH', 'curEn': 'BD', 'curAr': 'د.ب'};
             curTxt = translateObj.bahrainCur;
@@ -70,16 +70,14 @@ function Logo1(props) {
                 </select>
             </div>
             <nav>
-                <ul>
+                <ul style={language === 'en' ? {justifyContent: 'left'} : {justifyContent: 'right'}}>
                     <li>
                         <div style={screenSize > 500 ? { fontSize: '1rem'} : { fontSize: '0.85rem' }}>{curText}</div>
                     </li>
-                    <li>
-                        {flag}
-                    </li>
                    <li>
-                        <NavDropdown title={<MdLanguage color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'} />}
-                                     id="dropdown-menu-align-end">
+                        <NavDropdown //title={<MdLanguage color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'}/>}
+                                     title={flag}
+                                     id="dropdown-menu-align-end" >
                             <NavDropdown.Item style={screenSize > 500 ? { fontSize: '14px'} : { fontSize: '12px' }} eventKey="1"
                                             onClick={() => {setSelected('SA'); selectedHandler('SA');}}>
                                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -129,6 +127,7 @@ function Logo1(props) {
                             </NavDropdown.Item>
                         </NavDropdown>
                     </li>
+                   
                     <li>
                         <NavDropdown
                             title={<IoLanguage color='#657415' size={screenSize > 500 ? '1.2rem' : '1rem'} />}
