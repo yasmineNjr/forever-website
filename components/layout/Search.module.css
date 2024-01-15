@@ -80,12 +80,16 @@
     border-left: 0;
     padding: 0.25rem;
     /* width: 85%; */
-    width: 95%;
+    width: 100%;
     color: #989898;
     outline:none;
     height: 2.2rem;
   }
-
+  .control input:focus {
+    outline: none; 
+    border:1px solid #657415;
+    box-shadow: 0 0 10px #78a71b;
+  }
   .search {
     display: flex;
     justify-content: center;
@@ -218,11 +222,17 @@
       border-right: 0;
       border-left: 0;
       padding: 0.25rem;
-      width: 95%;
+      width: 100%;
       color: #989898;
       outline:none;
       height: 2.2rem;
     }
+    .control input:focus {
+      outline: none; 
+      border:1px solid #657415;
+      box-shadow: 0 0 10px #78a71b;
+    }
+  
   }
   
 

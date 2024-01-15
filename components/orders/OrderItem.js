@@ -6,7 +6,7 @@ import { useContext } from "react";
 function OrderItem(props) {
     // console.log(props.currency);
     const value = useContext(AppContext);
-    let { translateObj, language } = value.state;
+    let { translateObj, language, screenSize } = value.state;
     const dateFormat = translateObj.dateFormat;
     let status , curr;
     if(props.status === 'In progress')
@@ -23,14 +23,14 @@ function OrderItem(props) {
     return(
         <div className={classes.item} >
             <div className={classes.card}>
-                <div className={classes.order}>
+                <div className={classes.order} style={screenSize > 500 ? {flexDirection: 'row'} : {flexDirection: 'column'}}>
                     <div className={classes.title}>
                         <h3>#{props.id}</h3>
                     </div>
-                    <div className={classes.status}>
+                    <div className={classes.status} style={screenSize > 500 ? {textAlign: 'center', justifyContent: 'center'} : {textAlign: 'left'}}>
                         <h3>{status}</h3>
                     </div>
-                    <div className={classes.date}>
+                    <div className={classes.date} style={screenSize > 500 ? {textAlign: 'right', justifyContent: 'flex-end'} : {textAlign: 'left'}}>
                         <h3>{date}</h3>
                     </div>
                 </div>
