@@ -53,7 +53,7 @@ function CartList(props) {
     return(
         products.length === 0 ? 
             <div className={classes.noItems}>
-                <h2>{translateObj.noProducts}</h2>
+                <h2>{translateObj.noCart}</h2>
             </div>
             :
             <ul className={classes.list}>

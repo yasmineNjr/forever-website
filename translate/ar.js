@@ -49,6 +49,7 @@ const languageObject = {
     omanCur: "OMR",
     kuwaitCur: "KWD",
     searchHint: "بحث...",
+    noCart: "سلة المشتريات فارغة",
 }
 
 export default languageObject;

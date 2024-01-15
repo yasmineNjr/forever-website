@@ -2,8 +2,8 @@
     /* text-align: center; */
     display: flex;
     flex-direction: row;
-    width: 95%;
-    height: 35rem;
+    width: 93%;
+    height: auto;
     /* background-color: blueviolet; */
     border-radius: 4px;
     margin: 2rem;
@@ -18,6 +18,7 @@
 .subContainer {
     position: relative;
     margin: 1rem;
+    height: auto;
 }
 
 .details h1 {
@@ -41,16 +42,15 @@
 .details p {
     color: #989898;
     font-family: inherit;
-    height: 7rem;
+    height: auto;
     overflow: auto;
 }
 
 .buttons {
+    height: 4rem;
     display: flex;
-    flex-direction: row;
     align-items: baseline;
-    position: absolute; 
-    bottom: 0;
+    flex-direction: row;
 }
 
 .buttoncart {
@@ -72,49 +72,10 @@
     border: none;
 }
 
-.qtyminus {
-    background-color: ghostwhite;
-    height: 3rem;
-    margin-left: 1rem;
-    border-width: 1px;
-    color: #5D5D5D;
-    border-color: #989898;
-    border-right: 0;
-}
-
-.qtyquantity {
-    background-color: ghostwhite;
-    height: 3rem;
-    width: 3rem;
-    border-width: 1px;
-    color: #5D5D5D;
-    border-color: #989898;
-    border-right: 0;
-}
-
-.qtyplus {
-    background-color: ghostwhite;
-    height: 3rem;
-    border-width: 1px;
-    color: #5D5D5D;
-    border-color: #989898;
-    margin-right: 1rem;
-}
-
-.qtyplus:hover,
-.qtyplus:active {
-  background-color: #989898;
-}
-
-.qtyminus:hover,
-.qtyminus:active {
-  background-color: #989898;
-}
-
 .ul {
     overflow: auto;
     width: 100%; 
-    height: 6rem;
+    height: auto;
     color: #989898;
 }
 
@@ -133,9 +94,9 @@
 @media screen and (max-width : 500px) {
     .details {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 95%;
-        height: 28rem;
+        height: auto;
         border-radius: 4px;
         margin: 0.5rem;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -143,7 +104,7 @@
         background-color:ghostwhite;
     }
     .details img {
-        width: 45%;
+        width: 100%;
     }
     
     .subContainer {
@@ -153,7 +114,7 @@
     .ul {
         overflow: auto;
         width: 100%; 
-        height: 6rem;
+        height: auto;
         color: #989898;
         font-size: 0.85rem;
     }
@@ -179,16 +140,16 @@
     .details p {
         color: #989898;
         font-family: inherit;
-        height: 7rem;
+        height: auto;
         overflow: auto;
         font-size: 0.75rem;
     }
     
     .buttons {
+        height: 4rem;
         display: flex;
+        align-items: baseline;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
     }
     .buttoncart {
         width: 7rem;

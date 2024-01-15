@@ -261,11 +261,8 @@ function ProductDetails(props) {
                     </div>
                     }
                     <div className={classes.buttons}>
-                        {/* <button className={classes.qtyminus} onClick={minusHandler}>-</button>
-                        <button className={classes.qtyquantity}>{qty}</button>
-                        <button className={classes.qtyplus} onClick={plusHandler}>+</button> */}
                         <Quantity qty={qty} plusHandler={plusHandler} minusHandler={minusHandler}/>
-                        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <div >
                             <button className={classes.buttoncart} onClick={addToCartHandler}>{translateObj.addToCart}</button>
                         </div>
                         {/* <a href='https://web.whatsapp.com/' target='_blank' rel='noreferrer'>
