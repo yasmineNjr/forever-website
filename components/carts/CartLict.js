@@ -12,7 +12,10 @@ function CartList(props) {
     
     let textAlign ;
     language === 'en' ? textAlign = 'left' : textAlign= 'right';
-    let curr = language === 'en' ? props.cart.currency.curEn : props.cart.currency.curAr;
+    let curr = '';
+    if(props.cart !== null){
+        curr = language === 'en' ? props.cart.currency.curEn : props.cart.currency.curAr;
+    }
 
     const [products, setProducts] = useState(props.cart ? props.cart.products : []);
     const [total, setTotal] = useState(0);
