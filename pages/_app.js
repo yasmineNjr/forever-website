@@ -4,9 +4,33 @@ import '../styles/globals.css';
 import { useState, useEffect } from "react";
 import AppContext from "@/AppContext";
 import languageObjectEn from '../translate/en';
+// import { useRouter } from "next/router";
+// //import Router from "next/router";
+// //import Loader from "@/components/Loader";
 
+// function Loading(){
+//   const router = useRouter();
+//   const [loading, setLoading] = useState(false);
+//   useEffect(() => {
+//     const handleStart = (url) => (url !== router.asPath) && setLoading(true);
+//     const handleComplete = (url) => (url === router.asPath) && setTimeout(() => {setLoading(false);},2000) ;
+
+//     router.events.on('routeChangeStart', handleStart);
+//     router.events.on('routeChangeComplete', handleComplete);
+//     router.events.on('routeChangeError', handleComplete);
+
+//     return() => {
+//       router.events.off('routeChangeStart', handleStart);
+//       router.events.off('routeChangeComplete', handleComplete);
+//       router.events.off('routeChangeError', handleComplete);
+//     }
+//   });
+//   return loading && <div className="spinner-wrapper">
+//     <div className="spinner">
+//     </div>
+//   </div>
+// }
 function MyApp({ Component, pageProps }) {
-
   
   function getCurrentDimension(){
     if (typeof window !== 'undefined')
@@ -42,6 +66,16 @@ function MyApp({ Component, pageProps }) {
         window.removeEventListener('resize', updateDimension);
     })
   }, [screenSize]);
+
+  // const [loading, setLoading] = useState(false);
+  // Router.events.on('routeChangeStart', (url) => {
+  //   console.log('Route is changing');
+  //   setLoading(true);
+  // });
+  // Router.events.on('routeChangeComplete', (url) => {
+  //   console.log('Route is completed');
+  //   setLoading(false);
+  // });
   
   return (
     <AppContext.Provider
@@ -77,6 +111,8 @@ function MyApp({ Component, pageProps }) {
       }}
     >
         <Layout products={pageProps.products} departments={pageProps.departments}>
+          {/* <Loading/><Component {...pageProps} /> */}
+          {/* {loading && <Loader/>} */}
           <Component {...pageProps} />
         </Layout>
     </AppContext.Provider>

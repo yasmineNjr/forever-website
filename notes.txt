@@ -3,3 +3,7 @@ https://forever-website.vercel.app/
 
 How to make a ebsite responsive
 https://www.youtube.com/watch?v=eZ-sJD2FU4Q
+
+page to page loading
+https://www.youtube.com/watch?v=2Tj6lcfJytA
+https://www.youtube.com/watch?v=Dgnr3akrMHg

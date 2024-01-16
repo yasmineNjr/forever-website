@@ -72,6 +72,7 @@ export async function getStaticProps(){
         departments = await departmentsCollection.find().toArray();;
     }
     client.close();
+
     return {
         props: {
             //products: DUMMY_PRODUCTS,
