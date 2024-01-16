@@ -40,7 +40,7 @@ function Layout(props) {
       {/* <Logo departments={props.departments}/> */}
       <Logo1 departments={props.departments}/>
       <Search/>
-      { path !== '' &&
+      { path !== '' && !loading &&
         <div className={classes.title}>
           {path}
         </div>
