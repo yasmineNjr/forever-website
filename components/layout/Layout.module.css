@@ -21,7 +21,16 @@
   height: '0.5px';
   background-color: #989898;
 }
-
+.title {
+  display: flex; 
+  height: 5rem; 
+  align-items: center; 
+  justify-content: center;
+  color: #657415;
+   font-family: inherit; 
+   font-size: 1.5rem; 
+   font-weight: bold
+}
 .spinnerwrapper {
   /* height: 100vh;
   width: 100vh;

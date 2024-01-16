@@ -16,6 +16,7 @@
     display: flex;
     justify-content: center;
     margin: 5rem;
+    font-size: 1rem;
   }
   .item {
     /* margin: 0.2rem 1rem; */

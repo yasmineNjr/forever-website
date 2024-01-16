@@ -1,18 +1,18 @@
 import { MongoClient} from "mongodb";
 import ProductDetails from "@/components/products/ProductDetails";
-// import { useRouter } from "next/router";
-// import DUMMY_GROUPS from "@/data/groups";
 import { Fragment } from "react";
 import Head from "next/head";
-//import { MongoClient } from "mongodb";
+import AppContext from "@/AppContext";
+import { useContext } from "react";
 
 function DetailsPage(props) {
-   
+    const value = useContext(AppContext);
+    value.setActivePath(props.productData.titleEn);
     return (
         <Fragment>
              <Head>
-                <title>{props.titleEn}</title>
-                <meta name='description' content={props.description}/>
+                <title>{props.productData.titleEn}</title>
+                <meta name='description' content={props.productData.description}/>
             </Head>
             <ProductDetails  
                 id={props.productData.id}

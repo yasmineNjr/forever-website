@@ -44,7 +44,9 @@ function ProductList(props) {
                 {
                     list.length === 0 
                     ?
-                    <div className={classes.noItems}><h2 >{translateObj.noProducts}</h2></div>
+                    <div className={classes.noItems}>
+                        {translateObj.noProducts}
+                    </div>
                     :
                     list.map((product) => (
                         <ProductItem

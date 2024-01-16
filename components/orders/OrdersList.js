@@ -13,7 +13,7 @@ function OrdersList(props) {
     return(
         orders.length === 0 ? 
             <div className={classes.noItems}>
-                <h2>{translateObj.noOrders}</h2>
+                {translateObj.noOrders}
             </div>
             :
             <div className={classes.list}>

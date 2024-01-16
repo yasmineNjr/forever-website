@@ -5,9 +5,13 @@ import DUMMY_PRODUCTS from "@/data/products";
 import { Fragment } from "react";
 import Head from "next/head";
 import SETTINGS from "@/data/settings";
+import AppContext from "@/AppContext";
+import { useContext } from "react";
 
 function DetailsPage(props) {
   
+    const value = useContext(AppContext);
+    value.setActivePath(props.productData.titleEn);
     // const router = useRouter();
     // const productId = router.query.productId;
     
