@@ -27,7 +27,7 @@ function HomePage(props) {
     }
     let { department } = value.state;
     let { searchWord } = value.state;
-    const { translateObj, language } = value.state;
+    const { translateObj, language, currentUser } = value.state;
 
     let products = [];
     if( department !== translateObj.all){

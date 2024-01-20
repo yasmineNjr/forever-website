@@ -42,8 +42,8 @@ function ProductsPage(props) {
     return  (
         <Fragment>
              <Head>
-                <title>Forever Products</title>
-                <meta name='description' content='Browse all available Forever products.'/>
+                <title>{translateObj.products}</title>
+                <meta name='description' content={translateObj.productsDescription}/>
             </Head>
             <ProductList products={products} path={props.path}/> 
         </Fragment>

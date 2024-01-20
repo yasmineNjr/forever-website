@@ -1,9 +1,8 @@
 import { MongoClient } from "mongodb";
 import ProductList from "@/components/products/ProductList";
 // import DUMMY_GROUPS from "@/data/groups";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import Head from "next/head";
-import { useContext } from "react";
 import AppContext from "@/AppContext";
 
 function GroupsPage(props) {
@@ -33,8 +32,8 @@ function GroupsPage(props) {
     return (
         <Fragment>
             <Head>
-                <title>Forever Groups</title>
-                <meta name='description' content='Browse all available Forever groups.'/>
+                <title>{translateObj.groups}</title>
+                <meta name='description' content={translateObj.groupsDescription}/>
             </Head>
             <ProductList products={products} path={props.path}/>
         </Fragment>

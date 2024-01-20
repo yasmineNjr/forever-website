@@ -99,41 +99,11 @@ function Search() {
     // const orders = DUMMY_ORDER;
 
     const router = useRouter();
-    function homeHandler() {
-        let path;
-        path = '/' ;
-        router.push(path);
+    
+    function routeHandler(route) {
+        router.push(route);
     }
-    function dashboardHandler() {
-        let path;
-        path = 'products/new-product' ;
-        router.push(path);
-    }
-    function productsHandler() {
-        let path;
-        path = '/products' ;
-        router.push(path);
-    }
-    function groupsHandler() {
-        let path;
-        path = '/groups' ;
-        router.push(path);
-    }
-    function cartHandler() {
-        let path;
-        path = '/cart/' ;
-        router.push(path);
-    }
-    function orderHandler() {
-        let path;
-        path = '/orders/' ;
-        router.push(path);
-    }
-    function aboutHandler() {
-        let path;
-        path = '/about/' ;
-        router.push(path);
-    }
+   
     return (
         <header className={classes.header}>
             <div className={classes.control}>
@@ -157,28 +127,28 @@ function Search() {
                     {currentUser === 'MANAGER' && 
                     <li>
                         <div title={translateObj.dashboard} type="button" className={classes.iconbutton}>
-                            <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'}  onClick={dashboardHandler}/>
+                            <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'}  onClick={routeHandler.bind(null, 'products/new-product')}/>
                         </div>
                     </li>
                     }
                     <li>
                         <div title={translateObj.home} type="button" className={classes.iconbutton}>
-                            <FaHome color= {activePath==='/' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'}  onClick={homeHandler}/>
+                            <FaHome color= {activePath==='/' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'}  onClick={routeHandler.bind(null, '/')}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.products} type="button" className={classes.iconbutton}>
-                            <GoPackage  color= {activePath==='/products' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'} onClick={productsHandler}/>
+                            <GoPackage  color= {activePath==='/products' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'} onClick={routeHandler.bind(null, '/products')}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.groups} type="button" className={classes.iconbutton}>
-                            <TbPackages  color= {activePath==='/groups' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'} onClick={groupsHandler}/>
+                            <TbPackages  color= {activePath==='/groups' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.35rem' : '1.15rem'} onClick={routeHandler.bind(null, '/groups')}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.cart} type="button" className={classes.iconbutton}>
-                            <BsCart4 color= {activePath==='/cart' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={cartHandler}/>
+                            <BsCart4 color= {activePath==='/cart' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={routeHandler.bind(null, '/cart')}/>
                             {
                                 //cart.products.length > 0 && 
                                     // <span className={classes.iconbutton__badge}>{cart.products.length}</span>
@@ -189,7 +159,7 @@ function Search() {
                     </li>
                     <li>
                         <div title={translateObj.orders} type="button" className={classes.iconbuttondeliver}>
-                            <IoReceiptOutline color={activePath==='/orders' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={orderHandler}/>
+                            <IoReceiptOutline color={activePath==='/orders' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={routeHandler.bind(null, '/orders')}/>
                             {/* <TbTruckDelivery color='#657415' size='1.5rem' onClick={orderHandler}/> */}
                             {
                                 ordersCount > 0 &&
@@ -199,12 +169,12 @@ function Search() {
                     </li>
                     <li>
                         <div title={translateObj.about} type="button" className={classes.iconbutton}>
-                            <AiOutlineExclamationCircle color= {activePath==='/about' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'} onClick={aboutHandler}/>
+                            <AiOutlineExclamationCircle color= {activePath==='/about' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'} onClick={routeHandler.bind(null, '/about')}/>
                         </div>
                     </li>
                     <li>
                         <div title={translateObj.login} type="button" className={classes.iconbutton}>
-                            <AiOutlineUser color={activePath==='/user' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={cartHandler}/>   
+                            <AiOutlineUser color={activePath==='/user' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.2rem' : '1rem'} onClick={routeHandler.bind(null, '/user')}/>   
                         </div>
                     </li>
                 </ul>

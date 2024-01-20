@@ -6,14 +6,15 @@ import AppContext from "@/AppContext";
 import { useContext } from "react";
 
 function OrdersPage(props) {
-    //console.log(props);
+    
     const value = useContext(AppContext);
+    let { translateObj } = value.state;
     value.setActivePath('/orders');
     return  (
         <Fragment>
              <Head>
-                <title>Forever Orders</title>
-                <meta name='description' content='Browse all available Forever orders.'/>
+                <title>{translateObj.orders}</title>
+                <meta name='description' content={translateObj.ordersDescription}/>
             </Head>
             <OrdersList orders={props.orders} path={props.path}/> 
             {/* <div>orders</div> */}

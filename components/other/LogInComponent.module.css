@@ -1,0 +1,90 @@
+.main {
+    display: flex;   
+    width: 100%;    
+    height: auto;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+  }
+.submain {
+    width: 50%;
+    height: auto;
+    /* background-color: blueviolet; */
+}
+.form {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column;
+}
+.control {
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #989898;
+    border-radius: 4px;
+    /* background-color: aqua; */
+    height: auto;
+    overflow: hidden;
+}
+.input {
+    display: block;
+    font: inherit;
+    font-size: 0.85rem;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    border-left: 0;
+    padding: 0.25rem;
+    width: 100%;
+    color: #989898;
+    outline:none;
+    height: 2.2rem;
+  }
+  .control:focus-within {
+    outline: none; 
+    border:1px solid #657415;
+    box-shadow: 0 0 10px #78a71b;
+  }
+  .errorcontainer {
+    display: flex; 
+    align-items: center; 
+    width: 65%; 
+    height: 1rem; 
+    margin-top: 0.25rem; 
+    margin-bottom: 0.2rem;
+    flex-direction: row;
+    color: red ;
+    font-size: 0.8rem
+  }
+  .button {
+    width: 10rem;
+    height: 2rem;
+    background-color: #657415;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width : 500px) {
+    .main {
+        display: flex;   
+        width: 100%;    
+        height: auto;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    .submain {
+        width: 85%;
+        height: auto;
+        /* background-color: blueviolet; */
+    }
+}

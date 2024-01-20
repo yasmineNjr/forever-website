@@ -12,7 +12,7 @@ function CartPage(props) {
     const router = useRouter();
     //////////refresh cart icon////////////
     const value = useContext(AppContext);
-    const { ordersCount } = value.state;
+    const { ordersCount, translateObj } = value.state;
     
     value.setActivePath('/cart');
 
@@ -85,8 +85,8 @@ function CartPage(props) {
     return (
         <Fragment>
              <Head>
-                <title>Shopping Cart</title>
-                <meta name='description' content='Browse all products in the cart.'/>
+                <title>{translateObj.cart}</title>
+                <meta name='description' content={translateObj.cartDescription}/>
             </Head>
             <CartList cart= {props.cart}  order={orderHandler}/> 
         </Fragment>

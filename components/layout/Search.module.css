@@ -59,6 +59,7 @@
     /* background-color: aqua; */
     border: 1px solid #989898;
     border-radius: 4px;
+    overflow: hidden;
   }
 
   .iconcontrol {
@@ -85,7 +86,12 @@
     outline:none;
     height: 2.2rem;
   }
-  .control input:focus {
+  /* .control input:focus {
+    outline: none; 
+    border:1px solid #657415;
+    box-shadow: 0 0 10px #78a71b;
+  } */
+  .control:focus-within {
     outline: none; 
     border:1px solid #657415;
     box-shadow: 0 0 10px #78a71b;
