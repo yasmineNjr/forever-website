@@ -13,7 +13,7 @@ function CartList(props) {
     let textAlign ;
     language === 'en' ? textAlign = 'left' : textAlign= 'right';
     let curr = '';
-    if(props.cart !== null){
+    if(props.cart){
         curr = language === 'en' ? props.cart.currency.curEn : props.cart.currency.curAr;
     }
 
@@ -28,7 +28,7 @@ function CartList(props) {
         });
         let sum = 0;
         prods.map((product) => {
-            if(product.titleEn === quantity.titleEn && product.quantity !== quantity.quantity){
+            if(product.titleEn === quantity.titleEn && product.quantity !== quantity.quantity ){
                 product.quantity = quantity.quantity;
             }
         });
@@ -42,14 +42,6 @@ function CartList(props) {
         setTotal(sum);
     },[quantity])
     
-    if(!products){
-        return (
-            <div className={classes.noItems}>
-                <p>Loading...</p>
-            </div>
-        )
-        
-    }
     return(
         products.length === 0 ? 
             <div className={classes.noItems}>

@@ -3,7 +3,6 @@ import classes from './CartItem.module.css';
 import Quantity from '../ui/Quantity';
 import { MdClose } from 'react-icons/md';
 // import DUMMY_CART from '@/data/cart';
-import SETTINGS from '@/data/settings';
 import AppContext from "@/AppContext";
 import { useContext } from "react";
 
@@ -14,7 +13,7 @@ function CartItem(props) {
     const [total, setTotal] = useState((propsQty * parseFloat(props.price)).toFixed(2));
     //////////refresh cart icon////////////
     const value = useContext(AppContext);
-    let { cartItemsCount, language } = value.state;
+    let { cartItemsCount, language, currentUser } = value.state;
     let alignItems , title, curr;
     if(language === 'en'){
         alignItems = 'left';
@@ -70,7 +69,7 @@ function CartItem(props) {
         let prods = [];
         props.cart.products.map(prod =>  {if(prod.titleEn !== props.titleEn) prods.push(prod);});
         const enteredCartData ={
-            userId: SETTINGS.currentUser,
+            userId: currentUser,
             products: prods
             }
         addCartHandler(enteredCartData);

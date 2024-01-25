@@ -68,6 +68,7 @@ const languageObject = {
       notValidUserNameMsg: "This username is not valid!",
       existUserMsg: "This user is already exist!",
       wrongPasswordMsg: "Wrong password!",
+      loginToShow: "Log in to show your cart",
 }
 
 export default languageObject;

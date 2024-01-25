@@ -3,16 +3,15 @@ import { Rating } from 'react-simple-star-rating'
 import classes from './ProductDetails.module.css';
 import Link from 'next/link';
 import Quantity from '../ui/Quantity';
-import SETTINGS from '../../data/settings';
 import AppContext from "@/AppContext";
 import { useContext } from "react";
 import { useRouter } from 'next/router';
 import ReactFlagsSelect from "react-flags-select";
 
 function ProductDetails(props) {
-    
+    // console.log(props);
     const value = useContext(AppContext);
-    let { translateObj, language, currency, screenSize } = value.state;
+    let { translateObj, language, currency, screenSize, currentUser } = value.state;
     
     let title, department, description; 
     if(language === 'en'){
@@ -29,6 +28,7 @@ function ProductDetails(props) {
     const [selected, setSelected] = useState(currency.code);
     const [selectedCurrency, setSelectedCurrency] = useState(currency);
     const [price, setPrice] = useState(props.price.sa);///??????????
+    const [status, setStatus] = useState('');
     
     useEffect(() => {
        
@@ -40,6 +40,11 @@ function ProductDetails(props) {
         else if(currency.code === 'AE'){ setPrice(props.price.ae); }
         else if(currency.code === 'KW'){ setPrice(props.price.kw); }
         else if(currency.code === 'OM'){ setPrice(props.price.om); }
+        if(props.cart && props.cart.currency.code !== currency.code){
+            setStatus('different');
+        }else{
+            setStatus('');
+        }
 
     }, [currency]);
 
@@ -54,6 +59,10 @@ function ProductDetails(props) {
     const selectedHandler = (code) => {
         
         setSelectedCurrency(curr.find(cur => cur.code === code)); 
+        if(props.cart.currency.code !== curr.find(cur => cur.code === code).code)
+            setStatus('different');
+        else
+            setStatus('');
         if(code === 'SA'){ setPrice(props.price.sa);}
         else if(code === 'SA'){ setPrice(props.price.qa); }
         else if(code === 'BH'){ setPrice(props.price.bh); }
@@ -133,14 +142,14 @@ function ProductDetails(props) {
         //console.log(data);
     }
     function addToCartHandler(){
-        if(props.cart){
+        if(props.cart && props.cart.currency.code === selectedCurrency.code){
             const product = props.cart.products.find(product => product.titleEn === props.titleId);
             if(product){
                 let prods = [];
                 props.cart.products.map(prod =>  {if(prod !== product) prods.push(prod);});
-                prods.push( { id: product.id, titleEn: product.titleEn, titleAr: product.titleAr, price: product.price, quantity: qty.toString()})
+                prods.push( { id: product.id, titleEn: product.titleEn, titleAr: product.titleAr, price: product.price, quantity: (Number(product.quantity)+qty).toString()})
                 const enteredCartData ={
-                    userId: SETTINGS.currentUser,
+                    userId: currentUser,
                     currency: selectedCurrency,
                     products: prods
                     }
@@ -153,7 +162,7 @@ function ProductDetails(props) {
                 props.cart.products.map(product => prods.push(product));
                 prods.push( { id: props.id, titleEn: props.titleEn, titleAr: props.titleAr, price: price, quantity: qty.toString()})
                 const enteredCartData ={
-                    userId: SETTINGS.currentUser,
+                    userId: currentUser,
                     currency: selectedCurrency,
                     products: prods
                     }
@@ -162,10 +171,13 @@ function ProductDetails(props) {
                 value.setCartItemsCount(sum);
                 //console.log(enteredCartData);
             }
+            console.log('same');
+        }else if(props.cart && props.cart.currency.code !== selectedCurrency.code){
+            setStatus('different');
+            console.log('different');
         }else {
-            //console.log('no cart');
             const enteredCartData ={
-                                    userId: SETTINGS.currentUser,
+                                    userId: currentUser,
                                     currency: selectedCurrency,
                                     products: [
                                                 {   id: props.id, 
@@ -178,6 +190,7 @@ function ProductDetails(props) {
             }
             addCartHandler(enteredCartData);
             value.setCartItemsCount(qty);
+            // console.log('no cart');
         }
         //rediect to orders page   
         // let path;
@@ -263,12 +276,29 @@ function ProductDetails(props) {
                     <div className={classes.buttons}>
                         <Quantity qty={qty} plusHandler={plusHandler} minusHandler={minusHandler}/>
                         <div >
-                            <button className={classes.buttoncart} onClick={addToCartHandler}>{translateObj.addToCart}</button>
+                            <button className={classes.buttoncart} 
+                                    onClick={addToCartHandler}
+                                    disabled={currentUser === '' || status === 'different'}
+                                    >
+                                        {translateObj.addToCart}
+                            </button>
                         </div>
                         {/* <a href='https://web.whatsapp.com/' target='_blank' rel='noreferrer'>
                             <button className={classes.buttonwhatsup}>{translateObj.buyViaWhatsApp}</button>
                         </a> */}
                     </div>
+                    {
+                        currentUser === '' &&
+                        <div className={classes.warningdiv}>
+                            You have to log in to add items to cart!
+                        </div>
+                    }
+                    {
+                        status === 'different' &&
+                        <div className={classes.warningdiv}>
+                            You can not add different currencies to your cart!
+                        </div>
+                    }
                 </div>
             </div>
     );

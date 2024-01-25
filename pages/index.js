@@ -1,5 +1,4 @@
 import { MongoClient} from "mongodb";
-import SETTINGS from "@/data/settings";
 import Head from "next/head";
 import { useState, useEffect, Fragment } from "react";
 import ProductList from "@/components/products/ProductList";
@@ -11,23 +10,24 @@ function HomePage(props) {
     //console.log(props);
     const [loadedProducts, setLoadedProducts] = useState([]);
     const value = useContext(AppContext);
-    
+    let { department, searchWord, translateObj, language, currentUser } = value.state;
+
+    let cart = props.carts.find(c => {return c.userId === currentUser});
+    let orders = props.orders.find(c => {return c.userId === currentUser});
+
     // value.setCurrentIndex(0);
     value.setActivePath('/');
     let sum = 0;
-    if(props.cart){
-        props.cart.products.map(product => sum += Number(product.quantity));
+    if(cart){
+        cart.products.map(product => sum += Number(product.quantity));
         value.setCartItemsCount(sum);
     }
-    if(props.orders){
-        value.setOrdersCount(props.orders.length);
+    if(orders){
+        value.setOrdersCount(orders.length);
     }
     if(props.products){
         value.setAllProducts(props.products);
     }
-    let { department } = value.state;
-    let { searchWord } = value.state;
-    const { translateObj, language, currentUser } = value.state;
 
     let products = [];
     if( department !== translateObj.all){
@@ -77,12 +77,13 @@ export async function getStaticProps(){
    const cartCollection = db.collection('carts');
    let selectedCart;
    if(cartCollection){
-       selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+       selectedCart = await cartCollection.find().toArray();
    }
    const ordersCollection = db.collection('orders');
    let selectedOrders;
    if(ordersCollection){
-    selectedOrders = await ordersCollection.find({userId: SETTINGS.currentUser}).toArray();;
+    //selectedOrders = await ordersCollection.find({userId: currentUser}).toArray();
+    selectedOrders = await ordersCollection.find().toArray();;
    }
    const departmentsCollection = db.collection('departments');
    let departments;
@@ -128,18 +129,12 @@ export async function getStaticProps(){
             status: order.status,
             products: order.products,
         })) ,
-          cart: selectedCart ? 
-            {
-                id: selectedCart._id.toString(),
-                userId: selectedCart.userId,
-                products: selectedCart.products,
-            }
-            :
-            {
-                id: '',
-                userId: SETTINGS.currentUser,
-                products: [],
-            }
+        carts: selectedCart.map((cart) => ({
+            id: cart._id.toString(),
+            userId: cart.userId,
+            currency: cart.currency,
+            products: cart.products,
+        }))
       },
        revalidate: 10
    }

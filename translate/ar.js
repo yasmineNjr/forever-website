@@ -68,6 +68,7 @@ const languageObject = {
     notValidUserNameMsg: "اسم المستخدم هذا غير صالح!",
     existUserMsg: "هذا المستخدم موجود مسبقاً!",
     wrongPasswordMsg: "كلمة المرور خاطئة!",
+    loginToShow: "سجل الدخول ليتم عرض السلة",
 }
 
 export default languageObject;

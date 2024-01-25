@@ -1,6 +1,5 @@
 import { MongoClient} from "mongodb";
 import CartList from "@/components/carts/CartLict";
-import SETTINGS from "@/data/settings";
 import { Fragment } from "react";
 import Head from "next/head";
 import { useRouter } from 'next/router';
@@ -12,8 +11,10 @@ function CartPage(props) {
     const router = useRouter();
     //////////refresh cart icon////////////
     const value = useContext(AppContext);
-    const { ordersCount, translateObj } = value.state;
+    const { ordersCount, translateObj, currentUser } = value.state;
     
+    let cart = props.carts.find(c => {return c.userId === currentUser});
+
     value.setActivePath('/cart');
 
     async function addOrderHandler(enteredData){
@@ -52,7 +53,7 @@ function CartPage(props) {
         // console.log(props.cart.products)
         props.cart.products.map(product => {if(Number(product.quantity) !== 0) prods.push(product);});
         const enteredData ={
-            userId: SETTINGS.currentUser,
+            userId: currentUser,
             date: new Date(),
             products: prods,
             currency: props.cart.currency,
@@ -88,7 +89,15 @@ function CartPage(props) {
                 <title>{translateObj.cart}</title>
                 <meta name='description' content={translateObj.cartDescription}/>
             </Head>
-            <CartList cart= {props.cart}  order={orderHandler}/> 
+            {
+                currentUser !== ''
+                ?
+                <CartList cart = {cart}  order={orderHandler}/> 
+                :
+                <div style={{color: '#989898', display: 'flex', justifyContent: 'center', margin: '5rem', fontSize: '1rem'}}>
+                    {translateObj.loginToShow}
+                </div>
+            }
         </Fragment>
     )
     //<CartList products = {cart.products}/> 
@@ -103,20 +112,28 @@ export async function getStaticProps(){
      const cartCollection = db.collection('carts');
      let selectedCart;
      if(cartCollection){
-         selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+        //  selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+        selectedCart = await cartCollection.find().toArray();
      }
      client.close();
      return {
          props: {
-            cart: selectedCart ? 
-                {
-                    id: selectedCart._id.toString(),
-                    userId: selectedCart.userId,
-                    currency: selectedCart.currency,
-                    products: selectedCart.products,
-                }
-                :
-                null,
+            // cart: selectedCart ? 
+            //     {
+            //         id: selectedCart._id.toString(),
+            //         userId: selectedCart.userId,
+            //         currency: selectedCart.currency,
+            //         products: selectedCart.products,
+            //     }
+            //     :
+            //     null,
+            carts: selectedCart.map((cart) => ({
+                id: cart._id.toString(),
+                userId: cart.userId,
+                currency: cart.currency,
+                products: cart.products,
+            }))
+            
         },
          revalidate: 10
      }

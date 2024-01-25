@@ -7,7 +7,10 @@ import { useContext } from "react";
 
 function DetailsPage(props) {
     const value = useContext(AppContext);
+    const { currentUser } = value.state;
     value.setActivePath(props.productData.titleEn);
+    let cart = props.carts.find(c => {return c.userId === currentUser});
+
     return (
         <Fragment>
              <Head>
@@ -28,6 +31,7 @@ function DetailsPage(props) {
                 departmentAr={props.productData.departmentAr}
                 groups={props.productData.groups}
                 rate={props.productData.rate}
+                cart={cart}
             />
         </Fragment>
     );
@@ -43,6 +47,13 @@ export async function getStaticProps(context){
     const db = client.db();
     const productsCollection = db.collection('products');
     const selectedProduct = await productsCollection.findOne({titleId: groupId});
+
+    const cartCollection = db.collection('carts');
+    let selectedCart;
+    if(cartCollection){
+        selectedCart = await cartCollection.find().toArray();
+    }
+
     client.close();
 
      return {
@@ -62,6 +73,12 @@ export async function getStaticProps(context){
                 groups: selectedProduct.groups,
                 rate: selectedProduct.rate,
             },
+            carts: selectedCart.map((cart) => ({
+                id: cart._id.toString(),
+                userId: cart.userId,
+                currency: cart.currency,
+                products: cart.products,
+            }))
          },
          revalidate: 10
      }

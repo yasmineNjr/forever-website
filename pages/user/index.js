@@ -40,6 +40,7 @@ function UserPage() {
             setTimeout(() => {
                 router.push('/');
                 value.setCurrentUser(userData.userName) ;
+                localStorage.setItem('currentUser', userData.userName);
             },3000) ;
         }
     }

@@ -11,12 +11,14 @@ import { useContext } from "react";
 function DetailsPage(props) {
   
     const value = useContext(AppContext);
+    const { currentUser } = value.state;
     value.setActivePath(props.productData.titleEn);
     // const router = useRouter();
     // const productId = router.query.productId;
     
     // const product = DUMMY_PRODUCTS.filter(prod => prod.id === productId);
-   
+    let cart = props.carts.find(c => {return c.userId === currentUser});
+    
     return  (
         <Fragment>
             <Head>
@@ -46,7 +48,7 @@ function DetailsPage(props) {
                 departmentAr={props.productData.departmentAr}
                 groups={props.productData.groups}
                 rate={props.productData.rate}
-                cart={props.cart}
+                cart={cart}
                 test={props.productData.test}
             />
         </Fragment>
@@ -69,7 +71,8 @@ export async function getStaticProps(context){
     const cartCollection = db.collection('carts');
     let selectedCart;
     if(cartCollection){
-        selectedCart = selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+        //selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+        selectedCart = await cartCollection.find().toArray();
     }
     client.close();
      return {
@@ -98,14 +101,20 @@ export async function getStaticProps(context){
                 // groups: 'groups',
                 // rate: '3',
             },
-            cart: selectedCart ? 
-            {
-                id: selectedCart._id.toString(),
-                userId: selectedCart.userId,
-                products: selectedCart.products,
-            }
-            :
-            null
+            // cart: selectedCart ? 
+            // {
+            //     id: selectedCart._id.toString(),
+            //     userId: selectedCart.userId,
+            //     products: selectedCart.products,
+            // }
+            // :
+            // null
+            carts: selectedCart.map((cart) => ({
+                id: cart._id.toString(),
+                userId: cart.userId,
+                currency: cart.currency,
+                products: cart.products,
+            }))
          },
          //this is used to rerender the page every x seconds and it is useful if there are a lot of requests
          //=== the page is updated regularly after deployment

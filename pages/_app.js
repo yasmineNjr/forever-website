@@ -39,7 +39,12 @@ function MyApp({ Component, pageProps }) {
         height: window.innerHeight
     }
   }
-
+  let loginUser = '';
+  if (typeof window !== 'undefined' && window.localStorage) {
+    loginUser = localStorage.getItem('currentUser') || '';
+  }
+  
+  console.log('loginUser', loginUser);
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
   const [language, setLanguage] = useState('en');
@@ -51,7 +56,7 @@ function MyApp({ Component, pageProps }) {
   const [currency, setCurrency] = useState({'code': 'SA', 'curEn': 'SR', 'curAr': 'ر.س'});
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [activePath, setActivePath] = useState('/');
-  const [currentUser, setCurrentUser] = useState('u1');
+  const [currentUser, setCurrentUser] = useState(loginUser);
   const [screenSize, setScreenSize] = useState(1113);
 
   //console.log(pageProps.departments); 
