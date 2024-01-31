@@ -11,75 +11,17 @@ function CartPage(props) {
     const router = useRouter();
     //////////refresh cart icon////////////
     const value = useContext(AppContext);
-    const { ordersCount, translateObj, currentUser } = value.state;
+    const { translateObj, currentUser } = value.state;
     
     let cart = props.carts.find(c => {return c.userId === currentUser});
+    value.setUserCart(cart);
 
     value.setActivePath('/cart');
 
-    async function addOrderHandler(enteredData){
-        const response = await fetch('/api/new-order', {
-            method: 'POST',
-            body: JSON.stringify(enteredData),
-            header: {
-                'Content/Type': 'application/json'
-            }
-        });
-        const data = await response.json();
-    }
-    async function updateSalesCountHandler(enteredData){
-        const response = await fetch('/api/new-product', {
-            method: 'POST',
-            body: JSON.stringify(enteredData),
-            header: {
-                'Content/Type': 'application/json'
-            }
-        });
-        const data = await response.json();
-    }
-    async function deleteCartHandler(enteredCartData){
-        const response = await fetch('/api/new-cart', {
-            method: 'DELETE',
-            body: JSON.stringify(enteredCartData),
-            header: {
-                'Content/Type': 'application/json'
-            }
-        });
-        const data = await response.json();
-    }
     function orderHandler() {
-        
-        let prods = [];
-        // console.log(props.cart.products)
-        props.cart.products.map(product => {if(Number(product.quantity) !== 0) prods.push(product);});
-        const enteredData ={
-            userId: currentUser,
-            date: new Date(),
-            products: prods,
-            currency: props.cart.currency,
-            status: 'In progress'
-            }
-        
-        //update sales count
-        prods.map(pro =>{
-            const productData ={
-                titleId: pro.titleEn,
-                quantity: pro.quantity
-            }
-            updateSalesCountHandler(productData);
-            //console.log(pro)
-        })
-        //add order
-        addOrderHandler(enteredData); 
-        //delete cart
-        deleteCartHandler(enteredData);
-        //refresh cart icon
-        value.setCartItemsCount(0);
-         //refresh orders icon
-         value.setOrdersCount(Number(ordersCount) + 1);
-        //rediect to orders page   
         let path;
-        path = '/orders/' ;
+        path = '/orders/form' ;
+        // path = '/createOrder' ;
         router.push(path);
     }
 
@@ -92,7 +34,7 @@ function CartPage(props) {
             {
                 currentUser !== ''
                 ?
-                <CartList cart = {cart}  order={orderHandler}/> 
+                <CartList cart={cart}  order={orderHandler}/> 
                 :
                 <div style={{color: '#989898', display: 'flex', justifyContent: 'center', margin: '5rem', fontSize: '1rem'}}>
                     {translateObj.loginToShow}

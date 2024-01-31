@@ -8,14 +8,17 @@ function OrdersList(props) {
     const value = useContext(AppContext);
     let { translateObj } = value.state;
 
-    const orders = props.orders;
-    // console.log(orders);
+    let orders = [];
+    orders = props.orders;
+    
     return(
-        orders.length === 0 ? 
+        !orders ? 
             <div className={classes.noItems}>
                 {translateObj.noOrders}
             </div>
             :
+            Array.isArray(orders) 
+            ?
             <div className={classes.list}>
                 {orders.map((order) => ( 
                     <OrderItem
@@ -23,10 +26,23 @@ function OrdersList(props) {
                         date={order.date}
                         currency={order.currency}
                         status={order.status}
-                        products={order.products}/>
+                        products={order.products}
+                        customer={order.customer}
+                        address={order.address}
+                        phone={order.phone}/>
                 ))}
                 {/* <div>{orders.length}</div> */}
             </div>
+            :
+            <div className={classes.list}>
+                <OrderItem
+                    id={orders.id}
+                    date={orders.date}
+                    currency={orders.currency}
+                    status={orders.status}                        
+                    products={orders.products}
+                />
+        </div>
     )
 }
 

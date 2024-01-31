@@ -29,7 +29,7 @@ function UserPage() {
             }
         });
         const data = await response.json();
-        console.log(data.message);
+        // console.log(data.message);
         const msg = data.message;
         if(msg === 'notExist'){
             setStatus('notExist');
@@ -38,9 +38,9 @@ function UserPage() {
         }else if(msg === 'valid'){
             setStatus('valid');
             setTimeout(() => {
-                router.push('/');
                 value.setCurrentUser(userData.userName) ;
                 localStorage.setItem('currentUser', userData.userName);
+                router.push('/');
             },3000) ;
         }
     }

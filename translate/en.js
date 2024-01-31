@@ -62,6 +62,9 @@ const languageObject = {
       createAccount: "Create Account",
       firstNameHint: "First name...",
       lastNameHint: "Last name...",
+      customerHint: "Customer...",
+      addressHint: "Address...",
+      phoneHint: "Mobile...",
       loggedInMsg: "You logged in successfully as ",
       checkConfirmedPasswordMsg: "check the confirmed password!",
       checkPasswordMsg: "Use at least 8 characters!",
@@ -69,6 +72,7 @@ const languageObject = {
       existUserMsg: "This user is already exist!",
       wrongPasswordMsg: "Wrong password!",
       loginToShow: "Log in to show your cart",
+      orderForm: "Order Form",
 }
 
 export default languageObject;

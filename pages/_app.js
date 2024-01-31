@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }) {
     loginUser = localStorage.getItem('currentUser') || '';
   }
   
-  console.log('loginUser', loginUser);
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
   const [language, setLanguage] = useState('en');
@@ -58,6 +57,7 @@ function MyApp({ Component, pageProps }) {
   const [activePath, setActivePath] = useState('/');
   const [currentUser, setCurrentUser] = useState(loginUser);
   const [screenSize, setScreenSize] = useState(1113);
+  const [userCart, setUserCart] = useState({});
 
   //console.log(pageProps.departments); 
 
@@ -98,7 +98,8 @@ function MyApp({ Component, pageProps }) {
           // currentIndex  : currentIndex,
           activePath    : activePath,
           currentUser   : currentUser,
-          screenSize    : screenSize
+          screenSize    : screenSize,
+          userCart      : userCart,
         },
         setCartItemsCount: setCartItemsCount,
         setOrdersCount   : setOrdersCount,
@@ -112,7 +113,8 @@ function MyApp({ Component, pageProps }) {
         // setCurrentIndex  : setCurrentIndex,
         setActivePath    : setActivePath,
         setCurrentUser   : setCurrentUser,
-        setScreenSize    : setScreenSize
+        setScreenSize    : setScreenSize,
+        setUserCart      : setUserCart,
       }}
     >
         <Layout products={pageProps.products} departments={pageProps.departments}>

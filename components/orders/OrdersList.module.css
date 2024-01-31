@@ -2,14 +2,17 @@
     list-style: none;
     padding: 0 ;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     flex-direction: column;
     display: flex;
-    width: 90%;    
+    width: 88%;    
     /* flex-wrap: wrap;  */
     height: 100%;
     margin-left: 3rem;
     margin-right: 3rem;
     overflow: auto;
+    justify-content: center;
+    align-items: center;
   }
 
   .noItems {
@@ -25,6 +28,7 @@
       list-style: none;
       padding: 0 ;
       margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
       flex-direction: column;
       display: flex;
       width: 93%;    
@@ -33,5 +37,7 @@
       margin-left: 0.5rem;
       margin-right: 0.5rem;
       overflow: auto;
+      justify-content: center;
+      align-items: center;
     }
   }

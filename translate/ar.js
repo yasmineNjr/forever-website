@@ -62,6 +62,9 @@ const languageObject = {
     createAccount: "إنشاء حساب",
     firstNameHint: "الاسم الأول...",
     lastNameHint: "الكنية...",
+    customerHint: "العميل...",
+    addressHint: "العنوان...",
+    phoneHint: "الجوال...",
     loggedInMsg: "تم تسجيل الدخول بنجاح باسم ",
     checkConfirmedPasswordMsg: "تحقق من كلمة المرور المؤكدة!",
     checkPasswordMsg: "استخدام 8 أحرف على الأقل!",
@@ -69,6 +72,7 @@ const languageObject = {
     existUserMsg: "هذا المستخدم موجود مسبقاً!",
     wrongPasswordMsg: "كلمة المرور خاطئة!",
     loginToShow: "سجل الدخول ليتم عرض السلة",
+    orderForm: "نموذج طلب",
 }
 
 export default languageObject;

@@ -20,6 +20,7 @@ function Layout(props) {
     case '/groups':      path = translateObj.groups; break;
     case '/cart':        path = translateObj.cart; break;
     case '/orders':      path = translateObj.orders; break;
+    case '/orders/form': path = translateObj.orderForm; break;
     case '/about':       path = translateObj.about; break;
     case '/user':        path = translateObj.login; break;
     case '/dashboard':   path = translateObj.dashboard; break;

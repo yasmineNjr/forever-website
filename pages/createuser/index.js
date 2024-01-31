@@ -16,10 +16,10 @@ function CreateUserPage() {
     async function addUserHandler(enteredUserData){
         //validation
         if(enteredUserData.password.length < 8){
-            console.log('use at least 8 characters!');
+            // console.log('use at least 8 characters!');
             setStatus('weak');
         }else if(enteredUserData.password.trim() !== enteredUserData.confirmedPassword.trim()){
-            console.log('check confirmed password!');
+            // console.log('check confirmed password!');
             setStatus('confirm');
         }else{//add
             setLoading(true);
@@ -38,7 +38,7 @@ function CreateUserPage() {
                 }
             });
             const data = await response.json();
-            console.log(data.message);
+            // console.log(data.message);
             const msg = data.message;
             if(msg === 'exist'){
                 setStatus('exist');
@@ -47,9 +47,11 @@ function CreateUserPage() {
             }else if(msg === 'inserted'){
                 setStatus('inserted');
                 setTimeout(() => {
-                    router.push('/');
                     value.setCurrentUser(userData.userName) ;
                     localStorage.setItem('currentUser', userData.userName);
+                    value.setCartItemsCount(0);
+                    value.setOrdersCount(0);
+                    router.push('/');
                 },5000) ;
             }
         }

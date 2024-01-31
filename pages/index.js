@@ -7,14 +7,15 @@ import { useContext } from "react";
 import AppContext from "@/AppContext";
 
 function HomePage(props) {
-    //console.log(props);
+    
     const [loadedProducts, setLoadedProducts] = useState([]);
     const value = useContext(AppContext);
-    let { department, searchWord, translateObj, language, currentUser } = value.state;
-
+    let { department, searchWord, translateObj, language, currentUser, cartItemsCount } = value.state;
+    
     let cart = props.carts.find(c => {return c.userId === currentUser});
-    let orders = props.orders.find(c => {return c.userId === currentUser});
-
+    let orders = [];
+    props.orders.map(c => {if(c.userId === currentUser) orders.push(c)});
+    
     // value.setCurrentIndex(0);
     value.setActivePath('/');
     let sum = 0;
@@ -128,6 +129,9 @@ export async function getStaticProps(){
             date: order.date,
             status: order.status,
             products: order.products,
+            customer: order.customer,
+            address: order.address,
+            phone: order.phone,
         })) ,
         carts: selectedCart.map((cart) => ({
             id: cart._id.toString(),

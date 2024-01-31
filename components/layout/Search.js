@@ -12,9 +12,6 @@ import {IoReceiptOutline} from 'react-icons/io5';
 import {TbTruckDelivery} from 'react-icons/tb';
 import {AiOutlineUser} from 'react-icons/ai';
 // import DUMMY_DEPARTMENTS from "@/data/departments";
-// import DUMMY_CART from "@/data/cart";
-// import SETTINGS from "@/data/settings";
-// import DUMMY_ORDER from "@/data/order";
 import { useContext } from "react";
 import AppContext from "@/AppContext";
 import { NavDropdown } from "react-bootstrap";
@@ -34,10 +31,11 @@ function Search() {
     let { translateObj, cartItemsCount, ordersCount, language, activePath, currentUser, screenSize } = value.state;
     let cartCnt = cartItemsCount;
     if(cartItemsCount > 9)
-    cartCnt = '9+';
+        cartCnt = '9+';
     let orderCnt = ordersCount;
+    
     if(ordersCount > 9)
-    orderCnt = '9+';
+        orderCnt = '9+';
     
     let borderRight ;
     let borderLeft ;

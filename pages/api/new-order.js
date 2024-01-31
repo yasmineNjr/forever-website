@@ -13,7 +13,7 @@ async function handler(req, res){
         const result = await ordersCollection.insertOne(data);
         console.log(result);
         client.close();
-        res.status(201).json({message: 'Oreder Inserted!'})
+        res.status(201).json({message: 'Order Inserted!'})
     }
 }
 

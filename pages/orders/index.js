@@ -8,7 +8,13 @@ import { useContext } from "react";
 function OrdersPage(props) {
     
     const value = useContext(AppContext);
-    let { translateObj } = value.state;
+    let { translateObj, currentUser } = value.state;
+    
+    let orders = [];
+    props.orders.map(c => {if(c.userId === currentUser){
+        orders.push(c);
+    } });
+    
     value.setActivePath('/orders');
     return  (
         <Fragment>
@@ -16,7 +22,7 @@ function OrdersPage(props) {
                 <title>{translateObj.orders}</title>
                 <meta name='description' content={translateObj.ordersDescription}/>
             </Head>
-            <OrdersList orders={props.orders} path={props.path}/> 
+            <OrdersList orders={orders} path={props.path}/> 
             {/* <div>orders</div> */}
         </Fragment>
     )
@@ -39,6 +45,9 @@ export async function getStaticProps(){
                 date: order.date,
                 status: order.status,
                 products: order.products,
+                customer: order.customer,
+                address: order.address,
+                phone: order.phone,
             })),
             path: '/orders/'
         },
