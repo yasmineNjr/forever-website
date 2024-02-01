@@ -14,8 +14,13 @@ function OrdersPage(props) {
     props.orders.map(c => {if(c.userId === currentUser){
         orders.push(c);
     } });
-    
+    //arrange items by the newest date
+    orders.sort(function(a,b){
+        return new Date(b.date) - new Date(a.date);
+      });
+
     value.setActivePath('/orders');
+    
     return  (
         <Fragment>
              <Head>

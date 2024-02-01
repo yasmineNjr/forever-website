@@ -13,8 +13,20 @@ function CartList(props) {
     let textAlign ;
     language === 'en' ? textAlign = 'left' : textAlign= 'right';
     let curr = '';
+    let shippingCost = 0;
+    
     if(props.cart){
         curr = language === 'en' ? props.cart.currency.curEn : props.cart.currency.curAr;
+      
+        switch(props.cart.currency.code){
+            case 'SA': shippingCost = Number(SETTINGS.shippingCostSa); break;
+            case 'QA': shippingCost = Number(SETTINGS.shippingCostQa); break;
+            case 'BH': shippingCost = Number(SETTINGS.shippingCostBh); break;
+            case 'AE': shippingCost = Number(SETTINGS.shippingCostAe); break;
+            case 'KW': shippingCost = Number(SETTINGS.shippingCostKw); break;
+            case 'OM': shippingCost = Number(SETTINGS.shippingCostOm); break;
+            default  : shippingCost = Number(SETTINGS.shippingCostSa); break;
+        }
     }
 
     const [products, setProducts] = useState(props.cart ? props.cart.products : []);
@@ -37,7 +49,7 @@ function CartList(props) {
         products.map((product) => {
             sum += (parseInt(product.quantity) * parseFloat(product.price));
         });
-        sum += parseInt(SETTINGS.shippingCost);
+        sum += parseInt(shippingCost);
         sum = (sum).toFixed(2);
         setTotal(sum);
     },[quantity])
@@ -98,7 +110,7 @@ function CartList(props) {
                             {/* <h3>Quantity</h3> */}
                         </div>
                         <div className={classes.content} style={{textAlign: textAlign}}>
-                            <h3>25 {curr}</h3>
+                            <h3>{shippingCost} {curr}</h3>
                         </div>
                     </div>
                 </li>
