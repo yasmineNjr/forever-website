@@ -5,7 +5,7 @@ import Logo1 from './Logo1';
 import Search from './Search';
 import Footer from './Footer';
 import AppContext from "@/AppContext";
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import Router from "next/router";
 import { Audio, Circles, Grid, Rings, Puff, ThreeDots, TailSpin, Oval } from 'react-loader-spinner';
 
@@ -38,14 +38,16 @@ function Layout(props) {
 
   return (
     <div className={classes.container}>
-      <MainNavigation />
-      {/* <Logo departments={props.departments}/> */}
-      <Logo1 departments={props.departments}/>
-      <Search/>
+      <header className={classes.headercontainer}>
+        <MainNavigation />
+        {/* <Logo departments={props.departments}/> */}
+        <Logo1 departments={props.departments}/>
+        <Search/>
+      </header>
       { path !== '' && !loading &&
-        <div className={classes.title}>
-          {path}
-        </div>
+          <div className={classes.title} style={{marginTop: '13rem'}}>
+            {path}
+          </div>
       }
       {
         loading 
@@ -53,7 +55,7 @@ function Layout(props) {
         // <div className={classes.spinnerwrapper}>
         //     <div className={classes.spinner}></div>
         // </div>
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh'}}>
+        <div className={classes.spinnercontainer}>
           <ThreeDots
                   height="50"
                   width="50"

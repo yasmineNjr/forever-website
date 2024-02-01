@@ -7,6 +7,7 @@ import AppContext from "@/AppContext";
 import { useContext } from "react";
 import { useRouter } from 'next/router';
 import ReactFlagsSelect from "react-flags-select";
+import Card from '../ui/Card';
 
 function ProductDetails(props) {
     // console.log(props);
@@ -254,9 +255,9 @@ function ProductDetails(props) {
                                 }
                             </ul>
                         </div>
-                     } 
-                     {props.groups.length !== 0 && props.groups !== 'none' &&
-                       <div>
+                    } 
+                    {props.groups.length !== 0 && props.groups !== 'none' &&
+                    <div>
                         <text className={classes.ingredients}>{translateObj.groups}</text>
                         <ul className={classes.ul}>
                             {

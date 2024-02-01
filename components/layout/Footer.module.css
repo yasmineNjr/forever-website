@@ -49,6 +49,10 @@
     .logo {
       width: 100%;
       color: white;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
     }
     .logo p {
       font-size: 0.75rem;

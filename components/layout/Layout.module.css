@@ -1,6 +1,25 @@
 .container {
   /* background-color: #989898; */
   margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.headercontainer{
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  display: flex;
+  flex-direction: column; 
+  width: 100%; 
+  background-color: white; 
+  z-index: 10
+}
+.spinnercontainer{
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  height: 50vh; 
+  margin-top: 13rem
 }
 .main {
     /* margin: 3rem auto; */
@@ -27,9 +46,9 @@
   align-items: center; 
   justify-content: center;
   color: #657415;
-   font-family: inherit; 
-   font-size: 1.5rem; 
-   font-weight: bold
+  font-family: inherit; 
+  font-size: 1.5rem; 
+  font-weight: bold;
 }
 .spinnerwrapper {
   /* height: 100vh;

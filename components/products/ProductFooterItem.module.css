@@ -10,22 +10,28 @@
     background-color:ghostwhite;
 }
 .details img {
-    width: 30%;
+    width: 33%;
 }
 
 .subContainer {
     position: relative;
     padding: 0.2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
 }
 
 .details h1 {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-family: inherit;
     color: #657415;
 }
 
 .details h2 {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     color: #5D5D5D;
     font-family: inherit;
 }
@@ -33,11 +39,23 @@
 .price {
     display: flex;
     align-items: baseline;
-    /* background-color: blueviolet; */
 }
 
 .title {
     display: inline-block;
     vertical-align: top;
-    /* background-color: aqua; */
+}
+
+@media screen and (max-width : 500px) {
+    .details {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 5rem;
+        border-radius: 4px;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        background-color:ghostwhite;
+    }
 }

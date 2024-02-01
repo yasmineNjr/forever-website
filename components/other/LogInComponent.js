@@ -13,8 +13,11 @@ function LogInComponent(props) {
     const value = useContext(AppContext);
     let { translateObj, screenSize, language } = value.state;
     value.setActivePath('/user');
-
-    const [userName, setUserName] = useState('');
+    let user ;
+    if (typeof window !== 'undefined' && window.localStorage) {
+        user = localStorage.getItem('currentUser');
+      }
+    const [userName, setUserName] = useState(user);
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState('false');
 

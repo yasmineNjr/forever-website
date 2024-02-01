@@ -4,7 +4,7 @@ import classes from './ProductFooterList.module.css';
 function ProductFooterList(props) {
 
     return(
-        <ul className={classes.list}>
+        <ul className={classes.list} >
             {props.products.map((product) => (
                 <ProductFooterItem
                     key={product.id}

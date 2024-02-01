@@ -21,9 +21,6 @@ function ProductFooterItem(props) {
         }else{
             path = 'groups/';
         }
-        //console.log(path);
-        //router.replace('/')
-        //router.push(path+ props.title);
     }
 
     return(

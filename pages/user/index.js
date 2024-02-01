@@ -39,7 +39,9 @@ function UserPage() {
             setStatus('valid');
             setTimeout(() => {
                 value.setCurrentUser(userData.userName) ;
-                localStorage.setItem('currentUser', userData.userName);
+                if (typeof window !== 'undefined' && window.localStorage) {
+                    localStorage.setItem('currentUser', userData.userName);
+                  }
                 router.push('/');
             },3000) ;
         }

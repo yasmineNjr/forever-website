@@ -49,7 +49,7 @@ import AppContext from "@/AppContext";
 // ]
 
 function Footer(props) {
-    //console.log(props);
+    
     const value = useContext(AppContext);
     let { translateObj , language, screenSize } = value.state;
     let paddingRight;
@@ -110,7 +110,7 @@ function Footer(props) {
                 <h1>{translateObj.bestSellers}</h1>
                 <ProductFooterList products={DUMMY_BEST_PRODUCTS}/>
             </div>
-            <div className={classes.logo}>
+            <div className={classes.logo} >
                 <h1>{translateObj.latestProducts}</h1>
                 <ProductFooterList products={DUMMY_LATEST_PRODUCTS}/>
             </div>
