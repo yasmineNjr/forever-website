@@ -142,6 +142,7 @@ function OrderFormComponent(props) {
                             </div>
                             <input  type= 'text'  
                                     required
+                                    inputmode="numeric"
                                     maxlength='10'
                                     className={classes.input}
                                     value={phone}
