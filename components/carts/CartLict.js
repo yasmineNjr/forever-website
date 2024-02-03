@@ -28,7 +28,7 @@ function CartList(props) {
             default  : shippingCost = Number(SETTINGS.shippingCostSa); break;
         }
     }
-
+    console.log(props.cart);
     const [products, setProducts] = useState(props.cart ? props.cart.products : []);
     const [total, setTotal] = useState(0);
     const [quantity, setQuantity] = useState({});
