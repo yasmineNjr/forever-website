@@ -12,7 +12,8 @@ function CartPage(props) {
     //////////refresh cart icon////////////
     const value = useContext(AppContext);
     const { translateObj, currentUser } = value.state;
-    
+    console.log('all carts',props.carts);
+    console.log('current user',currentUser);
     let cart = props.carts.find(c => {return c.userId === currentUser});
     value.setUserCart(cart);
 
