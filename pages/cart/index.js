@@ -45,41 +45,65 @@ function CartPage(props) {
     )
     //<CartList products = {cart.products}/> 
 }
-
-export async function getStaticProps(){
-    //fetch data from API
-    const client = await MongoClient.connect(
-     'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
-     );
-     const db = client.db();
-     const cartCollection = db.collection('carts');
-     let selectedCart;
-     if(cartCollection){
-        //  selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
-        selectedCart = await cartCollection.find().toArray();
-     }
-     client.close();
-     return {
-         props: {
-            // cart: selectedCart ? 
-            //     {
-            //         id: selectedCart._id.toString(),
-            //         userId: selectedCart.userId,
-            //         currency: selectedCart.currency,
-            //         products: selectedCart.products,
-            //     }
-            //     :
-            //     null,
-            carts: selectedCart.map((cart) => ({
-                id: cart._id.toString(),
-                userId: cart.userId,
-                currency: cart.currency,
-                products: cart.products,
-            }))
+export async function getServerSideProps(context){
+     //fetch data from API
+     const client = await MongoClient.connect(
+        'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
+        );
+        const db = client.db();
+        const cartCollection = db.collection('carts');
+        let selectedCart;
+        if(cartCollection){
+           //  selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+           selectedCart = await cartCollection.find().toArray();
+        }
+        client.close();
+        return {
+            props: {
+               carts: selectedCart.map((cart) => ({
+                   id: cart._id.toString(),
+                   userId: cart.userId,
+                   currency: cart.currency,
+                   products: cart.products,
+               }))
+               
+           },
+        }
+}
+// export async function getStaticProps(){
+//     //fetch data from API
+//     const client = await MongoClient.connect(
+//      'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
+//      );
+//      const db = client.db();
+//      const cartCollection = db.collection('carts');
+//      let selectedCart;
+//      if(cartCollection){
+//         //  selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+//         selectedCart = await cartCollection.find().toArray();
+//      }
+//      client.close();
+//      return {
+//          props: {
+//             // cart: selectedCart ? 
+//             //     {
+//             //         id: selectedCart._id.toString(),
+//             //         userId: selectedCart.userId,
+//             //         currency: selectedCart.currency,
+//             //         products: selectedCart.products,
+//             //     }
+//             //     :
+//             //     null,
+//             carts: selectedCart.map((cart) => ({
+//                 id: cart._id.toString(),
+//                 userId: cart.userId,
+//                 currency: cart.currency,
+//                 products: cart.products,
+//             }))
             
-        },
-         revalidate: 10
-     }
- }
+//         },
+//          revalidate: 10
+//      }
+//  }
 
 export default CartPage;
