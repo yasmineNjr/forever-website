@@ -65,7 +65,7 @@ const languageObject = {
     customerHint: "العميل...",
     addressHint: "العنوان...",
     phoneHint: "الجوال...",
-    loggedInMsg: "تم تسجيل الدخول بنجاح باسم ",
+    loggedInMsg: "مرحباً ",
     checkConfirmedPasswordMsg: "تحقق من كلمة المرور المؤكدة!",
     checkPasswordMsg: "استخدام 8 أحرف على الأقل!",
     notValidUserNameMsg: "اسم المستخدم هذا غير صالح!",

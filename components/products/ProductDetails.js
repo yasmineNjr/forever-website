@@ -28,7 +28,7 @@ function ProductDetails(props) {
     const router = useRouter();
     const [selected, setSelected] = useState(currency.code);
     const [selectedCurrency, setSelectedCurrency] = useState(currency);
-    const [price, setPrice] = useState(props.price.sa);///??????????
+    const [price, setPrice] = useState(props.price.sa);
     const [status, setStatus] = useState('');
     
     useEffect(() => {
@@ -155,6 +155,7 @@ function ProductDetails(props) {
                     products: prods
                     }
                 addCartHandler(enteredCartData);
+                value.setUserCart(enteredCartData);
                 setCart(prods);
                 prods.map(p => {sum += Number(p.quantity);});
                 value.setCartItemsCount(sum);
@@ -170,12 +171,13 @@ function ProductDetails(props) {
                 addCartHandler(enteredCartData);
                 prods.map(p => {sum += Number(p.quantity);});
                 value.setCartItemsCount(sum);
+                value.setUserCart(enteredCartData);
                 //console.log(enteredCartData);
             }
-            console.log('same');
+            // console.log('same');
         }else if(props.cart && props.cart.currency.code !== selectedCurrency.code){
             setStatus('different');
-            console.log('different');
+            // console.log('different');
         }else {
             const enteredCartData ={
                                     userId: currentUser,
@@ -191,6 +193,7 @@ function ProductDetails(props) {
             }
             addCartHandler(enteredCartData);
             value.setCartItemsCount(qty);
+            value.setUserCart(enteredCartData);
             // console.log('no cart');
         }
         //rediect to orders page   

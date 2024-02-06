@@ -10,9 +10,8 @@ function OrdersList(props) {
 
     let orders = [];
     orders = props.orders;
-    console.log(props.orders);
+    
     return(
-        // !orders ? 
         orders.length === 0 ? 
             <div className={classes.noItems}>
                 {translateObj.noOrders}
@@ -32,7 +31,7 @@ function OrdersList(props) {
                             address={order.address}
                             phone={order.phone}/>
                     ))}
-                    {/* <div>{orders.length}</div> */}
+                    
                 </div>
                 :
                 <div className={classes.list}>
@@ -40,10 +39,13 @@ function OrdersList(props) {
                         id={orders.id}
                         date={orders.date}
                         currency={orders.currency}
-                        status={orders.status}                        
+                        status={orders.status}
                         products={orders.products}
-                    />
+                        customer={orders.customer}
+                        address={orders.address}
+                        phone={orders.phone}/>
         </div>
+        // <div>{orders.length}</div>
     )
 }
 

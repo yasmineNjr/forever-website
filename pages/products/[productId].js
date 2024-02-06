@@ -11,13 +11,14 @@ import { useContext } from "react";
 function DetailsPage(props) {
   
     const value = useContext(AppContext);
-    const { currentUser } = value.state;
+    const { currentUser, userCart, allProducts } = value.state;
     value.setActivePath(props.productData.titleEn);
     // const router = useRouter();
     // const productId = router.query.productId;
     
     // const product = DUMMY_PRODUCTS.filter(prod => prod.id === productId);
-    let cart = props.carts.find(c => {return c.userId === currentUser});
+    // let cart = props.carts.find(c => {return c.userId === currentUser});
+    let cart = userCart;
     
     return  (
         <Fragment>
@@ -101,20 +102,12 @@ export async function getStaticProps(context){
                 // groups: 'groups',
                 // rate: '3',
             },
-            // cart: selectedCart ? 
-            // {
-            //     id: selectedCart._id.toString(),
-            //     userId: selectedCart.userId,
-            //     products: selectedCart.products,
-            // }
-            // :
-            // null
-            carts: selectedCart.map((cart) => ({
-                id: cart._id.toString(),
-                userId: cart.userId,
-                currency: cart.currency,
-                products: cart.products,
-            }))
+            // carts: selectedCart.map((cart) => ({
+            //     id: cart._id.toString(),
+            //     userId: cart.userId,
+            //     currency: cart.currency,
+            //     products: cart.products,
+            // }))
          },
          //this is used to rerender the page every x seconds and it is useful if there are a lot of requests
          //=== the page is updated regularly after deployment
@@ -143,15 +136,5 @@ export async function getStaticPaths(){
         fallback: false,
         paths: prods,
     }
-    // return {
-    //     //fallback tells nextjs if path parameter contains all data(dynamic pages) or some of it(most visited as example)
-    //     //false means it contains all data
-    //     fallback: false,
-    //     paths: [
-    //         { params: { productId: 'vvv' } },
-    //         { params: { productId: 'The mini slimming group' } },
-    //         { params: { productId: 'Forever Therm' } }
-    //       ]
-    // }
 }
 export default DetailsPage;

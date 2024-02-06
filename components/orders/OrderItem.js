@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Sa, Qa, Kw, Bh, Om, Ae } from "react-flags-select";
 
 function OrderItem(props) {
-    // console.log(props.currency);
+    
     const value = useContext(AppContext);
     let { translateObj, language, screenSize } = value.state;
     const dateFormat = translateObj.dateFormat;
@@ -26,9 +26,9 @@ function OrderItem(props) {
             <div className={classes.card}>
                 {/* <div className={classes.order} style={screenSize > 500 ? {flexDirection: 'row'} : {flexDirection: 'column'}}> */}
                 <div className={{flexDirection: 'column'}}>
-                    <div className={classes.title}>
+                    {/* <div className={classes.title}>
                         <h3>#{props.id}</h3>
-                    </div>
+                    </div> */}
                     {/* <div className={classes.status} style={screenSize > 500 ? {textAlign: 'center', justifyContent: 'center'} : {textAlign: 'left'}}> */}
                     <div className={classes.status} style={{textAlign: 'left'}}>
                         <h3>{status}</h3>

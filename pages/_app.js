@@ -52,12 +52,15 @@ function MyApp({ Component, pageProps }) {
   const [department, setDepartment] = useState('All');
   const [searchWord, setSearchWord] = useState('');
   const [allProducts, setAllProducts] = useState([]);
+  const [allCarts, setAllCarts] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
   const [currency, setCurrency] = useState({'code': 'SA', 'curEn': 'SR', 'curAr': 'ر.س'});
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [activePath, setActivePath] = useState('/');
   const [currentUser, setCurrentUser] = useState(loginUser);
   const [screenSize, setScreenSize] = useState(1113);
   const [userCart, setUserCart] = useState({});
+  const [userOrders, setUserOrders] = useState([]);
 
   //console.log(pageProps.departments); 
 
@@ -94,12 +97,15 @@ function MyApp({ Component, pageProps }) {
           department    : department,
           searchWord    : searchWord,
           allProducts   : allProducts,
+          allCarts      : allCarts,
+          allOrders     : allOrders,
           currency      : currency,
           // currentIndex  : currentIndex,
           activePath    : activePath,
           currentUser   : currentUser,
           screenSize    : screenSize,
           userCart      : userCart,
+          userOrders    : userOrders,
         },
         setCartItemsCount: setCartItemsCount,
         setOrdersCount   : setOrdersCount,
@@ -109,12 +115,15 @@ function MyApp({ Component, pageProps }) {
         setDepartment    : setDepartment,
         setSearchWord    : setSearchWord,
         setAllProducts   : setAllProducts,
+        setAllCarts      : setAllCarts,
+        setAllOrders     : setAllOrders,
         setCurrency      : setCurrency,
         // setCurrentIndex  : setCurrentIndex,
         setActivePath    : setActivePath,
         setCurrentUser   : setCurrentUser,
         setScreenSize    : setScreenSize,
         setUserCart      : setUserCart,
+        setUserOrders    : setUserOrders,
       }}
     >
         <Layout products={pageProps.products} departments={pageProps.departments}>

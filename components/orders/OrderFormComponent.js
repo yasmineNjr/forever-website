@@ -5,11 +5,11 @@ import AppContext from "@/AppContext";
 import Card from '../ui/Card';
 import { Sa, Qa, Kw, Bh, Om, Ae } from "react-flags-select";
 
-function OrderFormComponent(props) {
+function OrderFormComponent() {
     
     const router = useRouter();
     const value = useContext(AppContext);
-    let { translateObj, language, userCart, currentUser, ordersCount } = value.state;
+    let { translateObj, language, userCart, currentUser, ordersCount, userOrders, allOrders, allCarts } = value.state;
 
     const [flag, setFlag] = useState(<Sa/>);
     const [code, setCode] = useState('+966');
@@ -95,8 +95,20 @@ function OrderFormComponent(props) {
             deleteCartHandler(enteredData);
             //refresh cart icon
             value.setCartItemsCount(0);
+            //refresh user cart 
+            value.setUserCart({});
+            let allCrts = allCarts;
+            allCarts.map(c => {if(c.userId !== currentUser) allCrts.push(c)});
+            value.setAllCarts(allCrts);
             //refresh orders icon
             value.setOrdersCount(Number(ordersCount) + 1);
+            //refresh user orders 
+            let ords = userOrders;
+            ords.push(enteredData);
+            value.setUserOrders(ords);
+            let allOrds = allOrders;
+            allOrds.push(enteredData);
+            value.setAllOrders(allOrds);
             //rediect to orders page   
             let path;
             path = '/orders' ;

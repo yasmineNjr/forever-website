@@ -1,4 +1,4 @@
-import { MongoClient} from "mongodb";
+// import { MongoClient} from "mongodb";
 import CartList from "@/components/carts/CartLict";
 import { Fragment } from "react";
 import Head from "next/head";
@@ -11,12 +11,13 @@ function CartPage(props) {
     const router = useRouter();
     //////////refresh cart icon////////////
     const value = useContext(AppContext);
-    const { translateObj, currentUser } = value.state;
-    console.log('all carts',props.carts);
-    console.log('current user',currentUser);
-    let cart = props.carts.find(c => {return c.userId === currentUser});
-    value.setUserCart(cart);
-
+    const { translateObj, currentUser, userCart } = value.state;
+    // console.log('all carts',props.carts);
+    // console.log('current user',currentUser);
+    // let cart = props.carts.find(c => {return c.userId === currentUser});
+    // value.setUserCart(cart);
+    let cart = userCart;
+    //set active path   
     value.setActivePath('/cart');
 
     function orderHandler() {
@@ -43,33 +44,32 @@ function CartPage(props) {
             }
         </Fragment>
     )
-    //<CartList products = {cart.products}/> 
 }
-export async function getServerSideProps(context){
-     //fetch data from API
-     const client = await MongoClient.connect(
-        'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
-        );
-        const db = client.db();
-        const cartCollection = db.collection('carts');
-        let selectedCart;
-        if(cartCollection){
-           //  selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
-           selectedCart = await cartCollection.find().toArray();
-        }
-        client.close();
-        return {
-            props: {
-               carts: selectedCart.map((cart) => ({
-                   id: cart._id.toString(),
-                   userId: cart.userId,
-                   currency: cart.currency,
-                   products: cart.products,
-               }))
+// export async function getServerSideProps(context){
+//      //fetch data from API
+//      const client = await MongoClient.connect(
+//         'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
+//         );
+//         const db = client.db();
+//         const cartCollection = db.collection('carts');
+//         let selectedCart;
+//         if(cartCollection){
+//            //  selectedCart = await cartCollection.findOne({userId: SETTINGS.currentUser});
+//            selectedCart = await cartCollection.find().toArray();
+//         }
+//         client.close();
+//         return {
+//             props: {
+//                carts: selectedCart.map((cart) => ({
+//                    id: cart._id.toString(),
+//                    userId: cart.userId,
+//                    currency: cart.currency,
+//                    products: cart.products,
+//                }))
                
-           },
-        }
-}
+//            },
+//         }
+// }
 // export async function getStaticProps(){
 //     //fetch data from API
 //     const client = await MongoClient.connect(

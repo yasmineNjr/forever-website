@@ -1,4 +1,4 @@
-import { MongoClient} from "mongodb";
+// import { MongoClient} from "mongodb";
 import AppContext from "@/AppContext";
 import LogInComponent from "@/components/other/LogInComponent";
 import { Fragment, useContext, useState } from "react";
@@ -8,7 +8,7 @@ import Head from "next/head";
 function UserPage(props) {
     const router = useRouter()
     const value = useContext(AppContext);
-    const { translateObj } = value.state;
+    const { translateObj, userCart, userOrders , allCarts, allOrders} = value.state;
     const [status, setStatus] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -40,7 +40,8 @@ function UserPage(props) {
             setStatus('valid');
             setTimeout(() => {
                 value.setCurrentUser(userData.userName);
-                let cart = props.carts.find(c => {return c.userId === userData.userName});
+                // let cart = props.carts.find(c => {return c.userId === userData.userName});
+                let cart = allCarts.find(c => {return c.userId === userData.userName});
                 value.setUserCart(cart);
                 ////update cart items count for current user
                 let sum = 0;
@@ -50,7 +51,8 @@ function UserPage(props) {
                 value.setCartItemsCount(sum);
                 ////update orders count for current user
                 let orders = [];
-                props.orders.map(c => {if(c.userId === userData.userName){
+                // props.orders.map(c => {if(c.userId === userData.userName){
+                allOrders.map(c => {if(c.userId === userData.userName){
                     orders.push(c);
                 } });
                 value.setOrdersCount(orders.length);
@@ -73,56 +75,45 @@ function UserPage(props) {
         </Fragment>
     )
 }
-export async function getStaticProps(){
+// export async function getStaticProps(){
     
-    //fetch data from API
-    const client = await MongoClient.connect(
-     'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
-     );
-     const db = client.db();
-     const cartCollection = db.collection('carts');
-     let selectedCart;
-     if(cartCollection){
-         selectedCart = await cartCollection.find().toArray();
-     }
-     const ordersCollection = db.collection('orders');
-     let selectedOrders;
-     if(ordersCollection){
-      //selectedOrders = await ordersCollection.find({userId: currentUser}).toArray();
-      selectedOrders = await ordersCollection.find().toArray();;
-     }
-     const departmentsCollection = db.collection('departments');
-     let departments;
-     if(departmentsCollection){
-      departments = await departmentsCollection.find().toArray();;
-     }
-     const productsCollection = db.collection('products');
-     let products;
-     if(productsCollection){
-      products = await productsCollection.find().toArray();;
-     }
-     
-     client.close();
-     return {
-         props: {
-          orders: selectedOrders.map((order) => ({
-              id: order._id.toString(),
-              userId: order.userId,
-              date: order.date,
-              status: order.status,
-              products: order.products,
-              customer: order.customer,
-              address: order.address,
-              phone: order.phone,
-          })) ,
-          carts: selectedCart.map((cart) => ({
-              id: cart._id.toString(),
-              userId: cart.userId,
-              currency: cart.currency,
-              products: cart.products,
-          }))
-        },
-         revalidate: 10
-     }
-  }
+//     //fetch data from API
+//     const client = await MongoClient.connect(
+//      'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
+//      );
+//      const db = client.db();
+//      const cartCollection = db.collection('carts');
+//      let selectedCart;
+//      if(cartCollection){
+//          selectedCart = await cartCollection.find().toArray();
+//      }
+//      const ordersCollection = db.collection('orders');
+//      let selectedOrders;
+//      if(ordersCollection){
+//       //selectedOrders = await ordersCollection.find({userId: currentUser}).toArray();
+//       selectedOrders = await ordersCollection.find().toArray();;
+//      }
+//      client.close();
+//      return {
+//          props: {
+//           orders: selectedOrders.map((order) => ({
+//               id: order._id.toString(),
+//               userId: order.userId,
+//               date: order.date,
+//               status: order.status,
+//               products: order.products,
+//               customer: order.customer,
+//               address: order.address,
+//               phone: order.phone,
+//           })) ,
+//           carts: selectedCart.map((cart) => ({
+//               id: cart._id.toString(),
+//               userId: cart.userId,
+//               currency: cart.currency,
+//               products: cart.products,
+//           }))
+//         },
+//          revalidate: 10
+//      }
+//   }
 export default UserPage;

@@ -10,26 +10,34 @@ function HomePage(props) {
     
     const [loadedProducts, setLoadedProducts] = useState([]);
     const value = useContext(AppContext);
-    let { department, searchWord, translateObj, language, currentUser, cartItemsCount } = value.state;
+    let { department, searchWord, translateObj, language, currentUser, allProducts } = value.state;
     
+    //get cart by currentUser
+    value.setAllCarts(props.carts);
     let cart = props.carts.find(c => {return c.userId === currentUser});
+    value.setUserCart(cart);
+    //get orders by currentUser
+    value.setAllOrders(props.orders);
     let orders = [];
     props.orders.map(c => {if(c.userId === currentUser) orders.push(c)});
-    
-    // value.setCurrentIndex(0);
+    value.setUserOrders(orders);
+    //set active path
     value.setActivePath('/');
+    //set cart items count
     let sum = 0;
     if(cart){
         cart.products.map(product => sum += Number(product.quantity));
         value.setCartItemsCount(sum);
     }
+    //set orders count
     if(orders){
         value.setOrdersCount(orders.length);
     }
+    //get all products
     if(props.products){
         value.setAllProducts(props.products);
     }
-
+    //get products by department
     let products = [];
     if( department !== translateObj.all){
         if(language === 'en')
@@ -39,6 +47,7 @@ function HomePage(props) {
     }else{
         products = props.products;
     }
+    //get products by searchWord
     if(products.length > 0){
         if(language === 'en'){
             products = products.filter(product => product.titleEn.toLowerCase().includes(searchWord.toLowerCase()));
@@ -46,22 +55,17 @@ function HomePage(props) {
             products = products.filter(product => product.titleAr.toLowerCase().includes(searchWord.toLowerCase()));
         }
     }  
-    //products = products.sort(() => Math.random() - Math.random()).slice(0, 3);
     useEffect(() => {
        
-        //setLoadedProducts(DUMMY_PRODUCTS);
-        
         setLoadedProducts(products.sort(() => Math.random() - Math.random()).slice(0, 8));
-
-        // setLoadedProducts(products);
 
     }, [department, searchWord]);
 
     return (
         <Fragment>
             <Head>
-                <title>Forever</title>
-                <meta name='description' content='Forever Company Website.'/>
+                <title>{translateObj.welcome}</title>
+                <meta name='description' content={translateObj.mainTitle}/>
             </Head>
             <ProductList products={loadedProducts} path=''/>
         </Fragment>
@@ -75,22 +79,26 @@ export async function getStaticProps(){
    'mongodb+srv://foreverUser:PwDV1m7yVI0D72uc@cluster0.ci8azls.mongodb.net/foreverDB?retryWrites=true&w=majority'
    );
    const db = client.db();
+   //get cart
    const cartCollection = db.collection('carts');
    let selectedCart;
    if(cartCollection){
        selectedCart = await cartCollection.find().toArray();
    }
+   //get orders
    const ordersCollection = db.collection('orders');
    let selectedOrders;
    if(ordersCollection){
     //selectedOrders = await ordersCollection.find({userId: currentUser}).toArray();
     selectedOrders = await ordersCollection.find().toArray();;
    }
+   //get departments
    const departmentsCollection = db.collection('departments');
    let departments;
    if(departmentsCollection){
     departments = await departmentsCollection.find().toArray();;
    }
+   //get products
    const productsCollection = db.collection('products');
    let products;
    if(productsCollection){
@@ -123,16 +131,17 @@ export async function getStaticProps(){
             titleEn: department.title.en,
             titleAr: department.title.ar,
         })) ,
-          orders: selectedOrders.map((order) => ({
+        orders: selectedOrders.map((order) => ({
             id: order._id.toString(),
             userId: order.userId,
+            currency: order.currency,
             date: order.date,
             status: order.status,
             products: order.products,
             customer: order.customer,
             address: order.address,
             phone: order.phone,
-        })) ,
+        })),
         carts: selectedCart.map((cart) => ({
             id: cart._id.toString(),
             userId: cart.userId,

@@ -65,7 +65,7 @@ const languageObject = {
       customerHint: "Customer...",
       addressHint: "Address...",
       phoneHint: "Mobile...",
-      loggedInMsg: "You logged in successfully as ",
+      loggedInMsg: "Welcome ",
       checkConfirmedPasswordMsg: "check the confirmed password!",
       checkPasswordMsg: "Use at least 8 characters!",
       notValidUserNameMsg: "This username is not valid!",
