@@ -54,6 +54,7 @@ function MyApp({ Component, pageProps }) {
   const [allProducts, setAllProducts] = useState([]);
   const [allCarts, setAllCarts] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
+  const [allDepartments, setAllDepartments] = useState([]);
   const [currency, setCurrency] = useState({'code': 'SA', 'curEn': 'SR', 'curAr': 'ر.س'});
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [activePath, setActivePath] = useState('/');
@@ -99,6 +100,7 @@ function MyApp({ Component, pageProps }) {
           allProducts   : allProducts,
           allCarts      : allCarts,
           allOrders     : allOrders,
+          allDepartments: allDepartments,
           currency      : currency,
           // currentIndex  : currentIndex,
           activePath    : activePath,
@@ -117,6 +119,7 @@ function MyApp({ Component, pageProps }) {
         setAllProducts   : setAllProducts,
         setAllCarts      : setAllCarts,
         setAllOrders     : setAllOrders,
+        setAllDepartments: setAllDepartments,
         setCurrency      : setCurrency,
         // setCurrentIndex  : setCurrentIndex,
         setActivePath    : setActivePath,

@@ -51,6 +51,7 @@ function CreateUserPage() {
                     localStorage.setItem('currentUser', userData.userName);
                     value.setCartItemsCount(0);
                     value.setOrdersCount(0);
+                    value.setUserCart({});
                     router.push('/');
                 },5000) ;
             }

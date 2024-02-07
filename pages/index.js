@@ -10,17 +10,20 @@ function HomePage(props) {
     
     const [loadedProducts, setLoadedProducts] = useState([]);
     const value = useContext(AppContext);
-    let { department, searchWord, translateObj, language, currentUser, allProducts } = value.state;
+    let { department, searchWord, translateObj, language, currentUser, userOrders } = value.state;
     
     //get cart by currentUser
     value.setAllCarts(props.carts);
     let cart = props.carts.find(c => {return c.userId === currentUser});
-    value.setUserCart(cart);
+    if(cart !== undefined)
+        value.setUserCart(cart);
+    
     //get orders by currentUser
     value.setAllOrders(props.orders);
     let orders = [];
     props.orders.map(c => {if(c.userId === currentUser) orders.push(c)});
-    value.setUserOrders(orders);
+    // value.setUserOrders(orders);///////////???????????????????
+    
     //set active path
     value.setActivePath('/');
     //set cart items count
@@ -29,14 +32,22 @@ function HomePage(props) {
         cart.products.map(product => sum += Number(product.quantity));
         value.setCartItemsCount(sum);
     }
+    
     //set orders count
     if(orders){
         value.setOrdersCount(orders.length);
     }
+    
     //get all products
     if(props.products){
         value.setAllProducts(props.products);
     }
+
+    //get all departments
+    if(props.departments){
+        value.setAllDepartments(props.departments);
+    }
+   
     //get products by department
     let products = [];
     if( department !== translateObj.all){
@@ -47,6 +58,7 @@ function HomePage(props) {
     }else{
         products = props.products;
     }
+
     //get products by searchWord
     if(products.length > 0){
         if(language === 'en'){

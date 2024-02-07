@@ -8,15 +8,15 @@ import { useContext } from "react";
 function OrdersPage(props) {
     
     const value = useContext(AppContext);
-    let { translateObj, userOrders } = value.state;
+    let { translateObj, currentUser, allOrders } = value.state;
     
-    // let orders = [];
-    // props.orders.map(c => {if(c.userId === currentUser){
-    //     orders.push(c);
-    // } });
+    let orders = [];
+    allOrders.map(c => {if(c.userId === currentUser){
+        orders.push(c);
+    } });
     
     //arrange items by the newest date
-    let orders = userOrders;
+    // let orders = userOrders;
     orders.sort(function(a,b){
         return new Date(b.date) - new Date(a.date);
       });

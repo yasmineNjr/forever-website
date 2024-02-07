@@ -15,7 +15,7 @@ function CartList(props) {
     let curr = '';
     let shippingCost = 0;
     
-    if(props.cart){
+    if(props.cart.currency){
         curr = language === 'en' ? props.cart.currency.curEn : props.cart.currency.curAr;
       
         switch(props.cart.currency.code){
@@ -28,8 +28,10 @@ function CartList(props) {
             default  : shippingCost = Number(SETTINGS.shippingCostSa); break;
         }
     }
+
     console.log('current cart', props.cart);
-    const [products, setProducts] = useState(props.cart ? props.cart.products : []);
+    
+    const [products, setProducts] = useState(props.cart.products ? props.cart.products : []);
     const [total, setTotal] = useState(0);
     const [quantity, setQuantity] = useState({});
     

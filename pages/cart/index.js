@@ -17,6 +17,7 @@ function CartPage(props) {
     // let cart = props.carts.find(c => {return c.userId === currentUser});
     // value.setUserCart(cart);
     let cart = userCart;
+    console.log(cart);
     //set active path   
     value.setActivePath('/cart');
 

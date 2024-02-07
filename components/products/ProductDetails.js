@@ -41,7 +41,7 @@ function ProductDetails(props) {
         else if(currency.code === 'AE'){ setPrice(props.price.ae); }
         else if(currency.code === 'KW'){ setPrice(props.price.kw); }
         else if(currency.code === 'OM'){ setPrice(props.price.om); }
-        if(props.cart && props.cart.currency.code !== currency.code){
+        if(props.cart.currency && props.cart.currency.code !== currency.code){
             setStatus('different');
         }else{
             setStatus('');
@@ -143,7 +143,7 @@ function ProductDetails(props) {
         //console.log(data);
     }
     function addToCartHandler(){
-        if(props.cart && props.cart.currency.code === selectedCurrency.code){
+        if(props.cart.currency && props.cart.currency.code === selectedCurrency.code){
             const product = props.cart.products.find(product => product.titleEn === props.titleId);
             if(product){
                 let prods = [];
@@ -175,7 +175,7 @@ function ProductDetails(props) {
                 //console.log(enteredCartData);
             }
             // console.log('same');
-        }else if(props.cart && props.cart.currency.code !== selectedCurrency.code){
+        }else if(props.cart.currency && props.cart.currency.code !== selectedCurrency.code){
             setStatus('different');
             // console.log('different');
         }else {

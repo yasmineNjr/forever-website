@@ -42,7 +42,8 @@ function UserPage(props) {
                 value.setCurrentUser(userData.userName);
                 // let cart = props.carts.find(c => {return c.userId === userData.userName});
                 let cart = allCarts.find(c => {return c.userId === userData.userName});
-                value.setUserCart(cart);
+                if(cart !== undefined)
+                    value.setUserCart(cart);
                 ////update cart items count for current user
                 let sum = 0;
                 if(cart){

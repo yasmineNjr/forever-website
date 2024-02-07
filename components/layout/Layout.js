@@ -12,7 +12,7 @@ import { Audio, Circles, Grid, Rings, Puff, ThreeDots, TailSpin, Oval } from 're
 function Layout(props) {
   
   const value = useContext(AppContext);
-  const { allProducts, translateObj, activePath} = value.state;
+  const { allProducts, allDepartments, translateObj, activePath} = value.state;
   let path ;
   switch(activePath){
     case '/': path = translateObj.home; break;
@@ -41,7 +41,7 @@ function Layout(props) {
       <header className={classes.headercontainer}>
         <MainNavigation />
         {/* <Logo departments={props.departments}/> */}
-        <Logo1 departments={props.departments}/>
+        <Logo1 departments={allDepartments}/>
         <Search/>
       </header>
       { path !== '' && !loading &&
