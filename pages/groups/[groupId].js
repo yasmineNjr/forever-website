@@ -7,9 +7,10 @@ import { useContext } from "react";
 
 function DetailsPage(props) {
     const value = useContext(AppContext);
-    const { currentUser } = value.state;
+    const { currentUser, userCart } = value.state;
     value.setActivePath(props.productData.titleEn);
-    let cart = props.carts.find(c => {return c.userId === currentUser});
+    // let cart = props.carts.find(c => {return c.userId === currentUser});
+    let cart = userCart;
 
     return (
         <Fragment>
@@ -73,12 +74,12 @@ export async function getStaticProps(context){
                 groups: selectedProduct.groups,
                 rate: selectedProduct.rate,
             },
-            carts: selectedCart.map((cart) => ({
-                id: cart._id.toString(),
-                userId: cart.userId,
-                currency: cart.currency,
-                products: cart.products,
-            }))
+            // carts: selectedCart.map((cart) => ({
+            //     id: cart._id.toString(),
+            //     userId: cart.userId,
+            //     currency: cart.currency,
+            //     products: cart.products,
+            // }))
          },
          revalidate: 10
      }
