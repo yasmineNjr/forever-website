@@ -13,16 +13,20 @@ function CartItem(props) {
     const [total, setTotal] = useState((propsQty * parseFloat(props.price)).toFixed(2));
     //////////refresh cart icon////////////
     const value = useContext(AppContext);
-    let { cartItemsCount, language, currentUser } = value.state;
-    let alignItems , title, curr;
+    let { cartItemsCount, language, currentUser, userCart } = value.state;
+    let alignItems , title, curr, textAlign;
     if(language === 'en'){
         alignItems = 'left';
+        textAlign = 'left';
         title = props.titleEn;
-        curr = props.cart.currency.curEn;
+        if( props.cart.currency)
+            curr = props.cart.currency.curEn;
     }else{
         alignItems = 'right';
+        textAlign= 'right';
         title = props.titleAr;
-        curr = props.cart.currency.curAr;
+        if( props.cart.currency)
+            curr = props.cart.currency.curAr;
     }
 
     function plusHandler(){
@@ -67,23 +71,31 @@ function CartItem(props) {
     }
     function clearHandler() {
         let prods = [];
-        props.cart.products.map(prod =>  {if(prod.titleEn !== props.titleEn) prods.push(prod);});
-        const enteredCartData ={
-            userId: currentUser,
-            products: prods
+        if(props.cart.products){
+            props.cart.products.map(prod =>  {if(prod.titleEn !== props.titleEn) prods.push(prod);});
+            const enteredCartData ={
+                userId: currentUser,
+                currency: props.cart.currency,
+                products: prods
+                }
+            if(prods.length === 0){
+                 //refresh cart icon
+                 value.setCartItemsCount(0);
+                 value.setUserCart({});
+                 props.setDisabled(true);
+                //delete cart
+                deleteCartHandler(enteredCartData);
+            }else{
+                //update cart
+                addCartHandler(enteredCartData);
+                //refresh cart icon
+                value.setCartItemsCount(cartItemsCount - qty);
+                value.setUserCart(enteredCartData);
             }
-        addCartHandler(enteredCartData);
-        if(prods.length === 1){
-            //delete cart
-            deleteCartHandler(enteredCartData);
-            //refresh cart icon
-            value.setCartItemsCount(0);
-        }else{
-            //refresh cart icon
-            value.setCartItemsCount(cartItemsCount - qty);
+            props.passChildData({titleEn: props.titleEn, titleAr: props.titleAr, quantity: 0});
         }
-        
-        props.passChildData({titleEn: props.titleEn, titleAr: props.titleAr, quantity: 0});
+        console.log(userCart);
+
     }
     return(
         <li className={classes.item} >
@@ -92,16 +104,16 @@ function CartItem(props) {
                 {/* onClick={clearHandler} */}
                     <MdClose color= '#5D5D5D' size='1.25rem' onClick={clearHandler}/>
                 </div>
-               <div className={classes.title}>
+               <div className={classes.title} style={{textAlign: textAlign}}>
                     <h3>{title}</h3>
                 </div>
-                <div className={classes.content}>
+                <div className={classes.content} style={{textAlign: textAlign}}>
                     <h3>{props.price} {curr}</h3>
                 </div>
-                <div className={classes.content}>
+                <div className={classes.content} style={{textAlign: textAlign}}>
                     <Quantity qty={qty} plusHandler={plusHandler} minusHandler={minusHandler}/>
                 </div>
-                <div className={classes.content}>
+                <div className={classes.content} style={{textAlign: textAlign}}>
                     <h3>{total} {curr}</h3>
                 </div>
             </div>

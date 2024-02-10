@@ -77,7 +77,10 @@ const DUMMY_PRODUCTS = [
     {
         id: 'p6',
         title: 'Forever Fiber',
-        image: 'https://cdn.foreverliving.com/content/products/images/forever_fiber__pd_main_512_X_512_1680691916090.jpg',
+        //image: 'https://cdn.foreverliving.com/content/products/images/forever_fiber__pd_main_512_X_512_1680691916090.jpg',
+        image: 'https://forever-gulf.com/wp-content/uploads/2019/09/fiber.jpg',
+        //https://arabforever.com/wp-content/uploads/2019/10/forever-fiber.jpg
+        //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvg6NMkxWuLEDhyIAdxKpHHJXX6NoJV6QFQlHtyhkLt6_wiIRlUzEvwy5WSKULvOkKRPs&usqp=CAU
         description: 'Get your fiber on the go with Forever Fiber®. These packets feature four types of fiber – including fructooligosaccharides, which is also a prebiotic. Pack in an extra five grams of fiber with each serving of this easy-dissolving formula.',
         price: '10',
         department: {id: 'weight', title: 'Slimming and weight control'},

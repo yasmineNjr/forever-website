@@ -8,7 +8,7 @@ import { useContext } from "react";
 function CartList(props) {
     
     const value = useContext(AppContext);
-    let { translateObj, language } = value.state;
+    let { translateObj, language, userCart } = value.state;
     
     let textAlign ;
     language === 'en' ? textAlign = 'left' : textAlign= 'right';
@@ -29,11 +29,10 @@ function CartList(props) {
         }
     }
 
-    console.log('current cart', props.cart);
-    
     const [products, setProducts] = useState(props.cart.products ? props.cart.products : []);
     const [total, setTotal] = useState(0);
     const [quantity, setQuantity] = useState({});
+    const [disabled, setDisabled] = useState(false);
     
     useEffect(() => {
         let prods = [];
@@ -62,86 +61,94 @@ function CartList(props) {
                 {translateObj.noCart}
             </div>
             :
-            <ul className={classes.list}>
-                <li className={classes.item} >
-                    <div className={classes.card}>
-                        <div className={classes.clear}>
-                            {/* <h3>Total</h3> */}
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <ul className={classes.list}>
+                    <li className={classes.item} >
+                        <div className={classes.card}>
+                            <div className={classes.clear}>
+                                {/* <h3>Total</h3> */}
+                            </div>
+                            <div className={classes.title} style={{textAlign: textAlign}}>
+                                <h3>{translateObj.title}</h3>
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                <h3>{translateObj.price}</h3>
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                <h3>{translateObj.quantity}</h3>
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                <h3>{translateObj.sum}</h3>
+                            </div>
                         </div>
-                        <div className={classes.title} style={{textAlign: textAlign}}>
-                            <h3>{translateObj.title}</h3>
+                    </li>
+                    {products.map((product) => ( 
+                        product.quantity === 0 ?
+                        <div></div>
+                        :
+                        <CartItem
+                            cart={props.cart}
+                            key={product.id}
+                            cartId={props.cart.id}
+                            id={product.id}
+                            titleEn={product.titleEn}
+                            titleAr={product.titleAr}
+                            price={product.price}
+                            qty={product.quantity}
+                            passChildData={setQuantity}
+                            setDisabled={setDisabled}/>
+                    ))}
+                    <li className={classes.item} >
+                        <div className={classes.card}>
+                            <div className={classes.clear}>
+                                {/* <h3>Total</h3> */}
+                            </div>
+                            <div className={classes.title} style={{textAlign: textAlign}}>
+                                <h3>{translateObj.shipping}</h3>
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                {/* <h3>Price</h3> */}
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                {/* <h3>Quantity</h3> */}
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                <h3>{shippingCost} {curr}</h3>
+                            </div>
                         </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            <h3>{translateObj.price}</h3>
+                    </li>
+                    <li className={classes.item} >
+                        <div className={classes.card}>
+                            <div className={classes.clear}>
+                                {/* <h3>Total</h3> */}
+                            </div>
+                            <div className={classes.title} style={{textAlign: textAlign}}>
+                                <h3>{translateObj.total}</h3>
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                {/* <h3>Price</h3> */}
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                {/* <h3>Quantity</h3> */}
+                            </div>
+                            <div className={classes.content} style={{textAlign: textAlign}}>
+                                <h2>{total} {curr}</h2>
+                            </div>
                         </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            <h3>{translateObj.quantity}</h3>
-                        </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            <h3>{translateObj.sum}</h3>
-                        </div>
-                    </div>
-                </li>
-                {products.map((product) => ( 
-                    product.quantity === 0 ?
-                    <div></div>
-                    :
-                    <CartItem
-                        cart={props.cart}
-                        key={product.id}
-                        cartId={props.cart.id}
-                        id={product.id}
-                        titleEn={product.titleEn}
-                        titleAr={product.titleAr}
-                        price={product.price}
-                        qty={product.quantity}
-                        passChildData={setQuantity}/>
-                ))}
-                <li className={classes.item} >
-                    <div className={classes.card}>
-                        <div className={classes.clear}>
-                            {/* <h3>Total</h3> */}
-                        </div>
-                        <div className={classes.title} style={{textAlign: textAlign}}>
-                            <h3>{translateObj.shipping}</h3>
-                        </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            {/* <h3>Price</h3> */}
-                        </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            {/* <h3>Quantity</h3> */}
-                        </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            <h3>{shippingCost} {curr}</h3>
-                        </div>
-                    </div>
-                </li>
-                <li className={classes.item} >
-                    <div className={classes.card}>
-                        <div className={classes.clear}>
-                            {/* <h3>Total</h3> */}
-                        </div>
-                        <div className={classes.title} style={{textAlign: textAlign}}>
-                            <h3>{translateObj.total}</h3>
-                        </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            {/* <h3>Price</h3> */}
-                        </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            {/* <h3>Quantity</h3> */}
-                        </div>
-                        <div className={classes.content} style={{textAlign: textAlign}}>
-                            <h2>{total} {curr}</h2>
-                        </div>
-                    </div>
-                </li>
-                <li className={classes.buttons}>
-                    <button className={classes.buttoncart} onClick={props.order}>{translateObj.order}</button>
-                    {/* <a href='https://web.whatsapp.com/' target='_blank' rel='noreferrer'>
-                        <button className={classes.buttonwhatsup} onClick={console.log('whatsapp')}>{translateObj.orderViaWhatsApp}</button>
-                    </a> */}
-                </li>
-            </ul>
+                    </li>
+                    <li className={classes.buttons}>
+                        <button className={classes.buttoncart} 
+                                disabled={disabled}
+                                onClick={props.order}>
+                        {translateObj.order}
+                        </button>
+                        {/* <a href='https://web.whatsapp.com/' target='_blank' rel='noreferrer'>
+                            <button className={classes.buttonwhatsup} onClick={console.log('whatsapp')}>{translateObj.orderViaWhatsApp}</button>
+                        </a> */}
+                    </li>
+                </ul>
+            </div>
+
     )
 }
 

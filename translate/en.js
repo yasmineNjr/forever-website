@@ -73,6 +73,8 @@ const languageObject = {
       wrongPasswordMsg: "Wrong password!",
       loginToShow: "Log in to show your cart",
       orderForm: "Order Form",
+      loginToAddToCart: "Log in to add items to cart!",
+      differentCurrencies: "You can not add different currencies to your cart!",
 }
 
 export default languageObject;

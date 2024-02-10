@@ -83,7 +83,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     margin: 1rem;
 }
-
+.buttoncart:disabled,
+.button[disabled]
+{
+  background-color: #989898;
+}
 .buttonwhatsup {
     width: 10rem;
     height: 3rem;
@@ -98,12 +102,12 @@
   .list {
     list-style: none;
     margin-top: 1rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
     padding: 0;
     flex-direction: column;
     display: flex;
-    width: 90%;    
+    width: 94%;    
     flex-wrap: wrap; 
     height: 100%;
   }

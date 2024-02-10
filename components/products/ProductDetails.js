@@ -294,13 +294,13 @@ function ProductDetails(props) {
                     {
                         currentUser === '' &&
                         <div className={classes.warningdiv}>
-                            You have to log in to add items to cart!
+                            {translateObj.loginToAddToCart}
                         </div>
                     }
                     {
                         status === 'different' &&
                         <div className={classes.warningdiv}>
-                            You can not add different currencies to your cart!
+                            {translateObj.differentCurrencies}
                         </div>
                     }
                 </div>

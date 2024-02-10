@@ -73,6 +73,8 @@ const languageObject = {
     wrongPasswordMsg: "كلمة المرور خاطئة!",
     loginToShow: "سجل الدخول ليتم عرض السلة",
     orderForm: "نموذج طلب",
+    loginToAddToCart: "سجل دخول لتتمكن من الإضافة للسلة!",
+    differentCurrencies: "لا يمكنك إضافة عملات مختلفة للسلة!",
 }
 
 export default languageObject;
