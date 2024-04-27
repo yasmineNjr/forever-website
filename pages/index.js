@@ -47,6 +47,11 @@ function HomePage(props) {
     if(props.departments){
         value.setAllDepartments(props.departments);
     }
+
+     //get all users
+     if(props.users){
+        value.setAllUsers(props.users);
+    }
    
     //get products by department
     let products = [];
@@ -116,7 +121,13 @@ export async function getStaticProps(){
    if(productsCollection){
     products = await productsCollection.find().toArray();;
    }
-   
+   //get users
+   const usersCollection = db.collection('users');
+   let users;
+   if(usersCollection){
+    users = await usersCollection.find().toArray();;
+   }
+
    client.close();
    return {
        props: {
@@ -159,7 +170,15 @@ export async function getStaticProps(){
             userId: cart.userId,
             currency: cart.currency,
             products: cart.products,
-        }))
+        })),
+        users: users.map((user) => ({
+            id: user._id.toString(),
+            firstName: user.firstName,
+            lastName: user.lastName,
+            userName: user.userName,
+            password: user.password,
+            date: user.date,
+        })) ,
       },
        revalidate: 10
    }

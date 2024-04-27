@@ -23,7 +23,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { TbPackages } from "react-icons/tb";
 import { GoPackage } from "react-icons/go";
 import { MdSpaceDashboard } from "react-icons/md";
-
+import { IoSearchSharp } from "react-icons/io5";
 
 function Search() {
 
@@ -105,6 +105,7 @@ function Search() {
     return (
         <header className={classes.header}>
             <div className={classes.control}>
+                <IoSearchSharp size={screenSize > 500 ? '1.35rem' : '1.15rem'} color='#657415' />
                 <input type='text' //required id='search' ref={searchInputRef} 
                         style={{ borderLeft: borderLeft, 
                                  borderRight: borderRight, 
@@ -122,10 +123,11 @@ function Search() {
             </div>
             <nav>
                 <ul>
-                    {currentUser === 'MANAGER' && 
+                    {//currentUser !== '' && 
                     <li>
                         <div title={translateObj.dashboard} type="button" className={classes.iconbutton}>
-                            <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'}  onClick={routeHandler.bind(null, 'products/new-product')}/>
+                            {/* <MdSpaceDashboard color= {activePath==='products/new-product' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'}  onClick={routeHandler.bind(null, 'products/new-product')}/> */}
+                            <MdSpaceDashboard color= {activePath==='/dashboard' ? '#657415' : '#989898'} size={screenSize > 500 ? '1.3rem' : '1.1rem'}  onClick={routeHandler.bind(null, '/dashboard')}/>
                         </div>
                     </li>
                     }

@@ -1,0 +1,41 @@
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 5%;
+}
+.control {
+    width: 10rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #989898;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  .input {
+    display: block;
+    font: inherit;
+    font-size: '1rem';
+    border: 0;
+    color: #989898;
+    outline:none;
+    height: 2.2rem;
+  }
+
+  @media screen and (max-width : 500px) {
+    .input {
+        display: block;
+        font: inherit;
+        font-size: '0.75rem';
+        border: 0;
+        color: #989898;
+        outline:none;
+        height: 2.2rem;
+      }
+  }

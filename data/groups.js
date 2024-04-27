@@ -34,8 +34,9 @@ const DUMMY_GROUPS = [
     {
         id: 'g3',
         title: 'Fit 1 group',
+        image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fforeverlivingarabia.com%2Fproduct%2F%25D9%2581%25D9%2588%25D8%25B1%25D9%258A%25D9%2581%25D8%25B1-%25D9%2581%25D9%258A%25D8%25AA-forever-fit%2F&psig=AOvVaw1es97aBmKIDx_shcbMWbdZ&ust=1711020714809000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNiA5__egoUDFQAAAAAdAAAAABAJ',
         //image: 'https://forever-gulf.com/wp-content/uploads/2019/01/02.jpg',
-        image: 'https://www.nairaland.com/attachments/3419135_photogrid1455568976451_jpeg66b80b4e8ace0c698424a1fbe4b57837',
+        ظظimage: 'https://www.nairaland.com/attachments/3419135_photogrid1455568976451_jpeg66b80b4e8ace0c698424a1fbe4b57837',
         //https://www.google.com/url?sa=i&url=https%3A%2F%2Fforever4all.com%2Fproduct%2F%25D9%2585%25D8%25AC%25D9%2585%25D9%2588%25D8%25B9%25D8%25A9-%25D9%2581%25D9%258A%25D8%25AA-1%2F&psig=AOvVaw04JHw3F6hBvSx36cg19LM_&ust=1704201580318000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNDHoYeNwYMDFQAAAAAdAAAAABAD
         //https://www.google.com/url?sa=i&url=https%3A%2F%2Farabforever.com%2Fproduct%2F%25D9%2581%25D9%2588%25D8%25B1%25D9%258A%25D9%2581%25D8%25B1-%25D9%2581%25D9%258A%25D8%25AA-1-forever-fit-1%2F&psig=AOvVaw04JHw3F6hBvSx36cg19LM_&ust=1704201580318000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNDHoYeNwYMDFQAAAAAdAAAAABAP
         //image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyixX7ubDtoSrXMAV9VJ-4WNBtwkX1BwA0TA_ZLQFaiWeu668JGkxQF_SWmy0G4sPx-3c&usqp=CAU',

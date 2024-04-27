@@ -15,17 +15,21 @@ function Layout(props) {
   const { allProducts, allDepartments, translateObj, activePath} = value.state;
   let path ;
   switch(activePath){
-    case '/': path = translateObj.home; break;
-    case '/products':    path = translateObj.products; break;
-    case '/groups':      path = translateObj.groups; break;
-    case '/cart':        path = translateObj.cart; break;
-    case '/orders':      path = translateObj.orders; break;
-    case '/orders/form': path = translateObj.orderForm; break;
-    case '/about':       path = translateObj.about; break;
-    case '/user':        path = translateObj.login; break;
-    case '/dashboard':   path = translateObj.dashboard; break;
-    case '/createuser':  path = translateObj.createAccount; break;
-    default:             path = ''; break;
+    case '/':                   path = translateObj.home; break;
+    case '/products':           path = translateObj.products; break;
+    case '/products/settings':  path = translateObj.dashboard+'/'+translateObj.products; break;
+    case '/groups':             path = translateObj.groups; break;
+    case '/groups/settings':    path = translateObj.dashboard+'/'+translateObj.groups; break;
+    case '/cart':               path = translateObj.cart; break;
+    case '/orders':             path = translateObj.orders; break;
+    case '/orders/settings':    path = translateObj.dashboard+'/'+translateObj.orders; break;
+    case '/orders/form':        path = translateObj.orderForm; break;
+    case '/about':              path = translateObj.about; break;
+    case '/user':               path = translateObj.login; break;
+    case '/user/settings':      path = translateObj.dashboard+'/'+translateObj.marketers; break;
+    case '/dashboard':          path = translateObj.dashboard; break;
+    case '/createuser':         path = translateObj.createAccount; break;
+    default:                    path = ''; break;
   }
 
   const [loading, setLoading] = useState(false);

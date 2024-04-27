@@ -32,6 +32,7 @@ function SignupComponent(props) {
             userName: userName,
             password: password,
             confirmedPassword: confirmedPassword,
+            date: new Date(),
         };
         
         props.onAddUser(userData);

@@ -1,7 +1,7 @@
 website address
 https://forever-website.vercel.app/
 
-How to make a ebsite responsive
+How to make a website responsive
 https://www.youtube.com/watch?v=eZ-sJD2FU4Q
 
 page to page loading

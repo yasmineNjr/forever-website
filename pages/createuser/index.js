@@ -28,6 +28,7 @@ function CreateUserPage() {
                 lastName: enteredUserData.lastName,
                 userName: enteredUserData.userName,
                 password: enteredUserData.password,
+                date: enteredUserData.date,
             };
             setTimeout(() => {setLoading(false);},10000) ;
             const response = await fetch('/api/new-user', {
