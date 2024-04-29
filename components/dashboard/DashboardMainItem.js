@@ -16,8 +16,9 @@ function DashboardMainItem(props) {
     
     function clickHandler() {
         
-        // let path = props.path;
-        // router.push(path + '/settings');
+        let path = props.path;
+        if(path !== '/orders')
+        router.push(path + '/settings');
     }
 
     return(
